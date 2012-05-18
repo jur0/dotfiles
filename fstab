@@ -1,0 +1,13 @@
+# <fs>			<mountpoint>	<type>		<opts>		<dump/pass>
+/dev/sda1		/boot		ext2		noauto,noatime	1 2
+/dev/sda2		/		ext4		noatime		0 1
+/dev/sda3		/usr		ext4		noatime		0 2
+/dev/sda5		/var		ext4		noatime		0 2
+/dev/sda6		/tmp		ext2		noatime		0 0
+/dev/sda7		/home		ext4		defaults	0 2
+/home/swapfile		none		swap		sw		0 0 
+/usr/opt		/opt		none		rw,bind		0 0
+
+#/dev/cdrom		/mnt/cdrom	auto		noauto,ro	0 0
+
+shm			/dev/shm	tmpfs		nodev,nosuid,noexec	0 0
