@@ -4,7 +4,7 @@
 set nocompatible
 
 " Filetype plugin enabled
-filetype plugin on
+filetype on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -31,6 +31,9 @@ set wildmenu
 
 " Always show current position
 set ruler
+
+" Information about the current command going on
+set showcmd
 
 " Buffer becomes hidden when it is abandoned
 set hidden
@@ -70,6 +73,9 @@ set tm=500
 " set foldcolumn=1
 
 " === Colors and fonts ===
+
+" Enable 256 colors
+set t_Co=256
 
 " Enable syntax highlighting
 syntax on
@@ -281,9 +287,8 @@ function! <SID>BufcloseCloseIt()
     endif
 endfunction
 
-" === Powerline settings ===
-
-set fillchars+=stl:\ ,stlnc:\
+" TODO
+set noshowmode
 
 " === Plugins - Vundle ====
 
@@ -291,20 +296,39 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-commentary'
-Bundle 'jimenezrick/vimerl'
+" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-commentary'
+
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'vim-erlang/vim-erlang-runtime'
+Plugin 'vim-erlang/vim-erlang-omnicomplete'
+Plugin 'vim-erlang/vim-erlang-skeletons'
+Plugin 'vim-erlang/vim-iawriter'
+
 
 call vundle#end()
+
+" === Plugins - settings ===
+
+" === Plugin - vim-airline ===
+
+let g:airline_powerline_fonts=1
+let g:bufferline_echo=0
+let g:airline#extensions#tabline#show_buffers=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline_theme='simple'
+set fillchars+=stl:\ ,stlnc:\
+
+" === Plugin - vim-erlang-skeletons ===
+
+let g:erl_author='Juraj Hlista <jurajhlista@gmail.com>'
+let g:erl_tpl_dir=getcwd() . "plugin_overlay/vim-erlang-skeletons/templates"
 
 " === Plugins - mappings ====
 
 map <leader>n :NERDTreeToggle<CR>
-
-""" TODO
-" set showmode
-" set showcmd
-

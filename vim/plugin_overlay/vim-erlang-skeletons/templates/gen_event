@@ -1,0 +1,63 @@
+%%-------------------------------------------------------------------
+%% @author $author
+%% @copyright (C) $year, $company
+%% @doc
+%%
+%% @end
+%% Created : $fulldate
+%%-------------------------------------------------------------------
+-module($basename).
+-behaviour(gen_event).
+
+%% API
+-export([start_link/0]).
+-export([add_handler/0]).
+
+%% Callbacks
+-export([init/1]).
+-export([handle_event/2]).
+-export([handle_call/2]).
+-export([handle_info/2]).
+-export([terminate/2]).
+-export([code_change/3]).
+
+-define(SERVER, ?MODULE).
+
+-record(state, {}).
+
+%% Callbacks
+
+start_link() ->
+    gen_event:start_link({local, ?SERVER}).
+
+add_handler() ->
+    gen_event:add_handler(?SERVER, ?MODULE, []).
+
+%% gen_event callbacks
+
+%% @private
+init([]) ->
+    {ok, #state{}}.
+
+%% @private
+handle_event(_Event, State) ->
+    {ok, State}.
+
+%% @private
+handle_call(_Request, State) ->
+    Reply = ok,
+    {ok, Reply, State}.
+
+%% @private
+handle_info(_Info, State) ->
+    {ok, State}.
+
+%% @private
+terminate(_Reason, _State) ->
+    ok.
+
+%% @private
+code_change(_OldVsn, State, _Extra) ->
+    {ok, State}.
+
+%% Internal functions
