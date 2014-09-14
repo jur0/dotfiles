@@ -14,9 +14,8 @@ vim:
 		mkdir -p ~/.vim/tmp/backup; \
 		mkdir -p ~/.vim/tmp/swap; \
 		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim; \
-		vim +PluginInstall +qall; \
 	fi
 	ln -fs $(PWD)/vim/vimrc ~/.vimrc
 	ln -fs $(PWD)/vim/ftplugin ~/.vim/ftplugin
 	ln -fs $(PWD)/vim/ftdetect ~/.vim/ftdetect
-
+	vim +PluginInstall +qall
