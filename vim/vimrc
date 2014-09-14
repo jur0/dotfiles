@@ -327,8 +327,8 @@ set fillchars+=stl:\ ,stlnc:\
 " === Plugin - vim-erlang-skeletons ===
 
 let g:erl_author='Juraj Hlista <jurajhlista@gmail.com>'
-let g:erl_tpl_dir=getcwd() . "plugin_overlay/vim-erlang-skeletons/templates"
+let g:erl_tpl_dir=fnamemodify(resolve(expand('~/.vimrc')), ':h') . "/plugin_overlay/vim-erlang-skeletons/templates"
 
-" === Plugins - mappings ====
+" === Plugin - mappings ===
 
 map <leader>n :NERDTreeToggle<CR>
