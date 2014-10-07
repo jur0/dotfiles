@@ -7,9 +7,8 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-colorscheme desert
-
 set commentstring=#\ %s
 
-" hi NonText ctermfg=7 guifg=gray
+hi NonText ctermfg=7 guifg=gray
 
+filetype indent off

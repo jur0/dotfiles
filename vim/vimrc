@@ -3,8 +3,8 @@
 " Not compatible with vi
 set nocompatible
 
-" Filetype plugin enabled
-filetype on
+" Filetype plugin enabled (at the at of the config due to vundle)
+filetype off
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -15,11 +15,11 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
- nmap <leader>w :w!<cr>
+nmap <leader>w :w!<cr>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+" command W w !sudo tee % > /dev/null
 
 " === User interface ===
 
@@ -34,6 +34,8 @@ set ruler
 
 " Information about the current command going on
 set showcmd
+
+set noshowmode
 
 " Buffer becomes hidden when it is abandoned
 set hidden
@@ -82,9 +84,9 @@ syntax on
 
 " Show line numbers
 set number
-hi LineNr ctermfg=grey
 
 " Set utf8 as standard encoding
+scriptencoding utf-8
 set encoding=utf8
 
 " Use Unix as the standard file type
@@ -287,9 +289,6 @@ function! <SID>BufcloseCloseIt()
     endif
 endfunction
 
-" TODO
-set noshowmode
-
 " === Plugins - Vundle ====
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -298,31 +297,32 @@ call vundle#begin()
 " let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 
-" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-commentary'
 
 Plugin 'tpope/vim-fugitive'
+Plugin 'sjl/gundo.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'mhinz/vim-signify'
+Plugin 'flazz/vim-colorschemes'
 
 Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-skeletons'
 Plugin 'vim-erlang/vim-iawriter'
 
-
 call vundle#end()
 
 " === Plugins - settings ===
 
-" === Plugin - vim-airline ===
+" === Plugin - airline ===
 
-let g:airline_powerline_fonts=1
-let g:bufferline_echo=0
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline_theme='simple'
-set fillchars+=stl:\ ,stlnc:\
+let g:bufferline_echo=0
+let g:airline_theme='jellybeans'
 
 " === Plugin - vim-erlang-skeletons ===
 
@@ -332,3 +332,11 @@ let g:erl_tpl_dir=fnamemodify(resolve(expand('~/.vimrc')), ':h') . "/plugin_over
 " === Plugin - mappings ===
 
 map <leader>n :NERDTreeToggle<CR>
+
+colorscheme jellybeans
+hi LineNr ctermfg=grey
+set fillchars=""
+set fillchars+=stl:\ ,stlnc:\
+hi MatchParen cterm=bold ctermbg=red ctermfg=green
+
+filetype indent plugin on
