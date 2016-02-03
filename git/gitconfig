@@ -1,18 +1,18 @@
 [github]
-	user = jur0
+    user = jur0
 
 [user]
-	name = Juraj Hlista
-	email = jurajhlista@gmail.com
+    name = Juraj Hlista
+    email = jurajhlista@gmail.com
 
 [color]
     diff = auto
     status = auto
-	ui = auto
+    ui = auto
 
 [core]
-	editor = vim
-	whitespace = trailing-space,space-before-tab
+    editor = vim
+    whitespace = trailing-space,space-before-tab
 
 [alias]
     a = add
@@ -67,4 +67,4 @@
     log-hook = "echo \"* changes on $1:\"; git log --no-merges --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s' $1..$2"
 
 [branch]
-	autosetupmerge = true
+    autosetupmerge = true
