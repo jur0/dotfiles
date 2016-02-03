@@ -59,10 +59,11 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X1
 alias m="make"
 alias mj="make -j 16"
 alias g="git"
+alias vim="nvim"
+alias v="nvim"
 
 unsetopt hist_verify
 
 # ZSH vim mode tweaks
 # export KEYTIMEOUT=1
 # bindkey -v
-
