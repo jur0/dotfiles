@@ -16,9 +16,7 @@
 
 [alias]
     a = add
-    aa = add -A :/
-    ai = add -i
-    ap = add -p
+    aa = add -a
     au = add -u
     amend = commit --verbose --amend
     amendr = commit --verbose --amend --reset-author
@@ -49,7 +47,7 @@
     rbc = rebase --continue
     rbi = rebase --interactive
     rbs = rebase --skip
-    s = status
+    s = status --short --branch
     sh = stash
     sha = stash apply
     shd = stash drop
@@ -67,4 +65,5 @@
     log-hook = "echo \"* changes on $1:\"; git log --no-merges --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s' $1..$2"
 
 [branch]
+    autosetuprebase = always
     autosetupmerge = true
