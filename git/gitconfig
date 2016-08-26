@@ -16,7 +16,7 @@
 
 [alias]
     a = add
-    aa = add -a
+    aa = add --all
     au = add -u
     amend = commit --verbose --amend
     amendr = commit --verbose --amend --reset-author

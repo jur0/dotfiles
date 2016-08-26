@@ -15,6 +15,8 @@ POWERLINE_HIDE_USER_NAME="true"
 POWERLINE_NO_BLANK_LINE="true"
 POWERLINE_DETECT_SSH="true"
 
+EDITOR="/usr/bin/nvim"
+
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"

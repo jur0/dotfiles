@@ -13,7 +13,7 @@ vim:
 		mkdir -p ~/.vim/bundle; \
 		mkdir -p ~/.vim/tmp/backup; \
 		mkdir -p ~/.vim/tmp/swap; \
-		git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim; \
+		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim; \
 	fi
 	ln -fs $(PWD)/vim/ftplugin ~/.vim/ftplugin
 	ln -fs $(PWD)/vim/ftdetect ~/.vim/ftdetect
