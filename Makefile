@@ -31,4 +31,6 @@ nvim:
 	curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	ln -fs $(PWD)/nvim/init.vim ~/.config/nvim/init.vim
+	nvim +PlugInstall +qa!
+	sed -i 's/" colorscheme/colorscheme/' $(PWD)/nvim/init.vim
 

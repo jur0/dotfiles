@@ -332,10 +332,6 @@ let g:airline_theme='jellybeans'
 
 map <leader>n :NERDTreeToggle<CR>
 
-" Theme
-colorscheme jellybeans
-hi MatchParen cterm=bold ctermbg=blue ctermfg=green
-
 " Window divider
 hi LineNr ctermfg=grey
 set fillchars=""
@@ -345,4 +341,10 @@ set fillchars+=stl:\ ,stlnc:\
 hi OverLength ctermbg=darkred
 match OverLength /\%81v.*/
 
+" Python path
 let g:python_host_prog = '/usr/bin/python'
+
+" Theme
+hi MatchParen cterm=bold ctermbg=blue ctermfg=green
+" Leave colorscheme commented it will get uncommented when installed!
+" colorscheme jellybeans
