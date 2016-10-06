@@ -1,10 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="candy"
 
 POWERLINE_FULL_CURRENT_PATH="true"
@@ -14,12 +10,6 @@ POWERLINE_SHOW_GIT_ON_RIGHT="true"
 POWERLINE_HIDE_USER_NAME="true"
 POWERLINE_NO_BLANK_LINE="true"
 POWERLINE_DETECT_SSH="true"
-
-EDITOR="/usr/bin/nvim"
-
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -47,22 +37,52 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
-plugins=(git git-extras github svn osx brew ssh-agent zsh-syntax-highlighting)
+plugins=(brew git git-extras github mix-fast svn osx ssh-agent tmux vagrant zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin
 
+# Based on http://superuser.com/a/39995.
+function prepend_to_path() {
+	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+		PATH="$1:$PATH"
+	fi
+}
+
+# Include the user's private bin.
+prepend_to_path "$HOME/bin"
+
+export LANG=en_US.UTF-8
+export LC_TIME=en_GB.UTF-8
+export LC_PAPER=en_GB.UTF-8
+export LC_MEASUREMENT=en_GB.UTF-8
+
+export EDITOR="/usr/bin/nvim"
+export PAGER="/usr/bin/less"
+
+export MAKEFLAGS="-j $(nproc)"
+export BLOCKSIZE=human-readable
+
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+
 alias m="make"
-alias mj="make -j 16"
 alias g="git"
 alias vim="nvim"
 alias v="nvim"
+
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+# ping network
+function pn() {
+	if [ $# -eq 0 ]; then
+		ping google.com
+	else
+		ping "$@"
+	fi
+}
 
 unsetopt hist_verify
 
