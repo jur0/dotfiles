@@ -139,6 +139,16 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open new vertical panes in the right rather than left
+set splitright
+
+" Open new horizontal panes in the bottom rather than top
+set splitbelow
+
+" Jump to the previous/next tab.
+noremap <silent> J gT
+noremap <silent> K gt
+
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -299,7 +309,8 @@ endfunction
 let g:plug_dir = expand('~/.config/nvim/plugged')
 call plug#begin(g:plug_dir)
 
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 
 Plug 'scrooloose/nerdtree'
@@ -309,6 +320,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
 Plug 'benekastah/neomake'
+"Plug 'Shougo/deoplete.nvim'
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
@@ -316,6 +331,7 @@ Plug 'vim-erlang/vim-erlang-skeletons', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-tags', {'for': 'erlang'}
 
 Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
+Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 Plug 'avdgaag/vim-phoenix'
 
 Plug 'ElmCast/elm-vim', {'for': 'elm'}
@@ -331,6 +347,8 @@ let g:bufferline_echo=0
 let g:airline_theme='jellybeans'
 
 map <leader>n :NERDTreeToggle<CR>
+
+let g:deoplete#enable_at_startup = 1
 
 " Window divider
 hi LineNr ctermfg=grey
