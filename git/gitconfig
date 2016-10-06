@@ -6,39 +6,49 @@
     email = jurajhlista@gmail.com
 
 [color]
-    diff = auto
-    status = auto
-    ui = auto
+    ui = true
+
+[color "grep"]
+    filename = magenta
+    match = red bold
+    separator = cyan
+
+[grep]
+  linenumber = true
 
 [core]
-    editor = vim
+    editor = nvim
+    pager = less
     whitespace = trailing-space,space-before-tab
 
 [alias]
     a = add
     aa = add --all
-    au = add -u
+    au = add --update
     amend = commit --verbose --amend
     amendr = commit --verbose --amend --reset-author
     authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
     bl = blame
     br = branch -vv
     bra = branch -a -vv
-    brr = branch -a -vv -r
     c = commit --verbose
     ca = commit --verbose --all
+    cl = clone
     clear = reset --hard
     co = checkout
+    cob = checkout -b
     cp = cherry-pick
     d = diff
-    da = diff HEAD
+    dh = diff HEAD
     ds = diff --staged
     ignored = ls-files --exclude-standard --ignored --others
-    l = log -25 --no-merges --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
-    lf = log --no-merges --numstat --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
+    l = "!git --no-pager log -10 --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'; echo"
+    ll = log --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
+    lla = log --all --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
+    lf = log --name-status --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
+    lp = log --patch --format=fuller
     lg = log --graph --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
     lga = log --graph --branches --remotes --tags --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
-    ll = log --no-merges --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s'
     m = merge --no-ff
     p = push
     pb = "!git push --set-upstream origin `git rev-parse --abbrev-ref HEAD`"
@@ -54,16 +64,16 @@
     shl = stash list
     shp = stash pop
     shs = stash show -p
+    sw = show --format=fuller
     tags = tag -l -n1
     this = "!git init && git add . && git commit -m 'Initial commit'"
     undo = reset --soft HEAD^
-    wip = "!git add . && git commit -m 'WIP'"
-    unwip = "!if [ `git show --oneline --pretty='%s' | head -n1` == 'WIP' ]; then git undo && git reset; fi"
+    today = "!git ll --since=midnight"
 
-[git-up "rebase"]
-    arguments = --preserve-merges
-    log-hook = "echo \"* changes on $1:\"; git log --no-merges --pretty='format:%C(yellow)%h %C(green)%ai %C(bold blue)%an %C(red)%d%C(reset) %s' $1..$2"
+[merge]
+    tool = vimdiff
 
-[branch]
-    autosetuprebase = always
-    autosetupmerge = true
+[credential]
+    helper = cache --timeout=3600
+
+
