@@ -44,16 +44,6 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin
 
-# Based on http://superuser.com/a/39995.
-function prepend_to_path() {
-	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-		PATH="$1:$PATH"
-	fi
-}
-
-# Include the user's private bin.
-prepend_to_path "$HOME/bin"
-
 export LANG=en_US.UTF-8
 export LC_TIME=en_GB.UTF-8
 export LC_PAPER=en_GB.UTF-8
@@ -77,11 +67,11 @@ alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # ping network
 function pn() {
-	if [ $# -eq 0 ]; then
-		ping google.com
-	else
-		ping "$@"
-	fi
+    if [ $# -eq 0 ]; then
+        ping google.com
+    else
+        ping "$@"
+    fi
 }
 
 unsetopt hist_verify
