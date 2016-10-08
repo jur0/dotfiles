@@ -146,8 +146,8 @@ set splitright
 set splitbelow
 
 " Jump to the previous/next tab.
-noremap <silent> J gT
-noremap <silent> K gt
+noremap <silent> H gT
+noremap <silent> L gt
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
@@ -311,6 +311,7 @@ call plug#begin(g:plug_dir)
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 
 Plug 'scrooloose/nerdtree'
@@ -342,9 +343,8 @@ call plug#end()
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers=1
-let g:bufferline_echo=0
-let g:airline_theme='jellybeans'
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline_theme='badwolf'
 
 map <leader>n :NERDTreeToggle<CR>
 
@@ -364,5 +364,7 @@ let g:python_host_prog = '/usr/bin/python'
 
 " Theme
 hi MatchParen cterm=bold ctermbg=blue ctermfg=green
+set background=dark
+let g:solarized_termcolors=256
 " Leave colorscheme commented it will get uncommented when installed!
-" colorscheme jellybeans
+" colorscheme solarized
