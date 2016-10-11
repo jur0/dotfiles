@@ -331,9 +331,9 @@ Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-skeletons', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-tags', {'for': 'erlang'}
 
-Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
-Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
-Plug 'avdgaag/vim-phoenix'
+Plug 'elixir-lang/vim-elixir', {'for': ['elixir', 'eelixir']}
+Plug 'slashmili/alchemist.vim', {'for': ['elixir', 'eelixir']}
+"Plug 'avdgaag/vim-phoenix'
 
 Plug 'ElmCast/elm-vim', {'for': 'elm'}
 
@@ -347,8 +347,6 @@ let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_theme='badwolf'
 
 map <leader>n :NERDTreeToggle<CR>
-
-let g:deoplete#enable_at_startup = 1
 
 " Window divider
 hi LineNr ctermfg=grey
