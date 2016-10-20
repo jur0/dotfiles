@@ -52,13 +52,13 @@ export LC_MEASUREMENT=en_GB.UTF-8
 export EDITOR="/usr/bin/nvim"
 export PAGER="/usr/bin/less"
 
-export MAKEFLAGS="-j $(nproc)"
 export BLOCKSIZE=human-readable
 
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 alias m="make"
+alias mj="make -j $(nproc)"
 alias g="git"
 alias vim="nvim"
 alias v="nvim"
