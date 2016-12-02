@@ -34,3 +34,7 @@ nvim:
 	nvim +PlugInstall +qa!
 	sed -i 's/" colorscheme/colorscheme/' $(PWD)/nvim/init.vim
 
+vagrant:
+	if [ ! -d ~/VM/vagrant ]; then \
+		mkdir -p ~/VM/vagrant; \
+	fi
