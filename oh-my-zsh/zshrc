@@ -77,7 +77,10 @@ function pn() {
 unsetopt hist_verify
 
 export VAGRANT_HOME=~/VM/vagrant
+export TERMINFO=~/.terminfo
 
 # ZSH vim mode tweaks
 # export KEYTIMEOUT=1
 # bindkey -v
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
