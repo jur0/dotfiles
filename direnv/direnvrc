@@ -1,0 +1,7 @@
+use_kerl () {
+    . $KERL_DEFAULT_VERSION_DIR/$1/activate
+}
+
+use_kiex () {
+    source ~/.kiex/elixirs/elixir-$1.env
+}

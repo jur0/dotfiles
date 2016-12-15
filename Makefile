@@ -1,9 +1,9 @@
-.PHONY: oh-my-zsh git vim nvim tmux vagrant
+.PHONY: zsh git vim nvim kerl direnv tmux vagrant
 
-all: oh-my-zsh git nvim tmux
+all: zsh git nvim tmux kerl direnv
 
-oh-my-zsh:
-	ln -fs $(PWD)/oh-my-zsh/zshrc ~/.zshrc
+zsh:
+	ln -fs $(PWD)/zsh/zshrc ~/.zshrc
 
 git:
 	ln -fs $(PWD)/git/gitconfig ~/.gitconfig
@@ -34,6 +34,15 @@ nvim:
 	ln -fs $(PWD)/nvim/init.vim ~/.config/nvim/init.vim
 	nvim +PlugInstall +qa!
 	sed -i 's/" colorscheme/colorscheme/' $(PWD)/nvim/init.vim
+
+kerl:
+	ln -fs $(PWD)/kerl/kerlrc ~/.kerlrc
+
+direnv:
+	if [ ! -d ~/.config/direnv ]; then \
+		mkdir -p ~/.config/direnv; \
+	fi
+	ln -fs $(PWD)/direnv/direnvrc ~/.config/direnv/direnvrc
 
 tmux:
 	ln -fs $(PWD)/tmux/tmux.conf ~/.tmux.conf
