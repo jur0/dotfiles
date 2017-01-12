@@ -20,6 +20,7 @@
     editor = nvim
     pager = less
     whitespace = trailing-space,space-before-tab
+    excludesfile = ~/.gitignore_global
 
 [alias]
     a = add

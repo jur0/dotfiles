@@ -7,6 +7,7 @@ zsh:
 
 git:
 	ln -fs $(PWD)/git/gitconfig ~/.gitconfig
+	ln -fs $(PWD)/git/gitignore_global ~/.gitignore_global
 
 vim:
 	if [ ! -d ~/.vim ]; then \
