@@ -6,17 +6,16 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'FooSoft/vim-argwrap'
+Plug 'dietsche/vim-lastplace'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
-Plug 'flazz/vim-colorschemes'
+Plug 'tomasr/molokai'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
-
 Plug 'benekastah/neomake'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -55,6 +54,7 @@ set showcmd             " Show info about the current command
 set showmatch           " Show matching brackets when typing them
 set secure              " Forbid loading of .vimrc under $PWD
 set nomodeline          " Modelines have been a source of vulnerabilities
+set iskeyword+=-        " Makes foo-bar one word
 
 " No annoying sound on errors
 set noerrorbells novisualbell t_vb=
@@ -62,8 +62,10 @@ set noerrorbells novisualbell t_vb=
 " backups and undo
 set nobackup            " Disable backups when writing to a file
 set nowritebackup       " Disable auto backup before overwriting a file
-set swapfile            " Enable backups of changes buffers
-set directory=~/.nvim/swap//     " Directory for swap files
+set directory=~/.nvim/swap//    " Directory for swap files
+set swapfile            " Enable backups of changed buffers
+set undodir=~/.nvim/undo//      " Directory for undo history
+set undofile            " Enable backups of undos
 set history=1000        " Lines of history to remember
 
 " Statusline
@@ -103,10 +105,10 @@ set nosmartindent       " Turn off smartindent
 
 " Whitespace
 set tabstop=4           " Number of spaces a tab counts for
+set softtabstop=4       " Causes backspace to delete 4 spaces
 set shiftwidth=4        " Number of spaces to use for each step of indent
 set shiftround          " Round indent to multiple of shiftwidth
 set expandtab           " Expand tab with spaces
-set smarttab            " <Tab> in front of line inserts 'shiftwidth' blanks
 
 " Line numbers
 set number              " Show line numbers
@@ -136,12 +138,8 @@ set fencs=ucs-bom,utf-8,cp1250,latin2,latin1
 " End of line
 set ffs=unix,mac,dos    " List of preferred EOLs
 
-" Colors
-syntax on               " Syntax highlighting
-set background=dark
-
 " Spellcheck
-set nospell             " Disable spellchecking by default (F1 toggles it)
+set nospell             " Disable spellchecking by default
 set spelllang=en_us,en_gb
 
 " Clipboard
@@ -161,34 +159,43 @@ set sessionoptions+=winsize
 " TODO: shada?
 
 " Python paths
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog='/usr/bin/python2'
+let g:python3_host_prog='/usr/bin/python3'
+
+"------------------------------------------------------------------------------
+" Colors
+"------------------------------------------------------------------------------
+syntax on               " Syntax highlighting
+set background=dark
+colorscheme molokai
+
+hi ExceedChars ctermfg=white ctermbg=darkblue
 
 "------------------------------------------------------------------------------
 " Key mappings
 "------------------------------------------------------------------------------
-let mapleader = ','     " <Leader>
-let maplocalleader = ','
+let mapleader=','       " <leader>
+let maplocalleader=','
 
 " Create/close buffer
-nnoremap <Leader>bn :enew<CR>
-nnoremap <Leader>B :bprevious <BAR> bdelete! #<CR>
-nnoremap <Leader>BB :bprevious <BAR> bwipeout! #<CR>
+nnoremap <leader>bn :enew<CR>
+nnoremap <leader>B :bprevious <BAR> bdelete! #<CR>
+nnoremap <leader>BB :bprevious <BAR> bwipeout! #<CR>
 
 " Move to previous/next buffer
 noremap <silent> J :bnext<CR>
 noremap <silent> K :bprevious<CR>
 
 " Create/close tab
-nnoremap <Leader>tn :tabnew<CR>
-nnoremap <Leader>T :tabclose<CR>
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>T :tabclose<CR>
 
 " Move to previous/next tab (also possible with airline-tabline)
 noremap <silent> H gT
 noremap <silent> L gt
 
-" Join lines by <Leader>+j because J is mapped to 'go to previous tab'
-noremap <Leader>j J
+" Join lines by <leader>+j because J is mapped to 'go to previous tab'
+noremap <leader>j J
 
 " Moving cursor through wrapped lines
 " http://stackoverflow.com/a/21000307/2580955
@@ -198,63 +205,60 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " Quit
 noremap <silent> Q :q!<CR>
 
+" Search and replace
+nnoremap <leader>r :%s//g<Left><Left>
+
+" Start of a command
+nnoremap ; :
+
 " Save all buffers
 nnoremap <silent> <C-s> :w<CR>:wa<CR>
 inoremap <silent> <C-s> <Esc>:w<CR><Esc>:wa<CR>
 vnoremap <silent> <C-s> <Esc>:w<CR><Esc>:wa<CR>
 
 " Windows switching
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-h> <C-w>h
-nnoremap <A-l> <C-w>l
-vnoremap <A-j> <C-\><C-n><C-w>j
-vnoremap <A-k> <C-\><C-n><C-w>k
-vnoremap <A-h> <C-\><C-n><C-w>h
-vnoremap <A-l> <C-\><C-n><C-w>l
-inoremap <A-j> <C-\><C-n><C-w>j
-inoremap <A-k> <C-\><C-n><C-w>k
-inoremap <A-h> <C-\><C-n><C-w>h
-inoremap <A-l> <C-\><C-n><C-w>l
-cnoremap <A-j> <C-\><C-n><C-w>j
-cnoremap <A-k> <C-\><C-n><C-w>k
-cnoremap <A-h> <C-\><C-n><C-w>h
-cnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " Terminal
-if has('nvim')
-    nnoremap <silent> <Leader>to :terminal<CR>
-    nnoremap <silent> <Leader>tvo :vsplit term://$SHELL<CR>
-    nnoremap <silent> <Leader>tho :split term://$SHELL<CR>
-    tnoremap <A-q> <C-\><C-n>
-    tnoremap <A-j> <C-\><C-n><C-w>j
-    tnoremap <A-k> <C-\><C-n><C-w>k
-    tnoremap <A-h> <C-\><C-n><C-w>h
-    tnoremap <A-l> <C-\><C-n><C-w>l
-    " TODO set title
-    au BufWinEnter,WinEnter term://* startinsert
-    au WinEnter *pid:* call feedkeys('i')
-endif
+nnoremap <silent> <leader>to :terminal<CR>
+nnoremap <silent> <leader>tvo :vsplit term://$SHELL<CR>
+nnoremap <silent> <leader>tho :split term://$SHELL<CR>
+
+" Leave insert mode in terminal
+tnoremap <A-q> <C-\><C-n>
+
+" Termina windows switching
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-l> <C-\><C-n><C-w>l
+" TODO set terminal title
+" Start insert mode when switched to terminal
+" au BufWinEnter,WinEnter term://* startinsert
+" au WinEnter *pid:* call feedkeys('i')
 
 " Disable search highlight
 noremap <silent> <Space> :silent nohlsearch<CR>
 
 " Switch CWD to the directory of the open buffer
-noremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
+noremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Stay in visual mode when indenting.
 vnoremap < <gv
 vnoremap > >gv
 
 " Open config files in tabs
-nnoremap <Leader>zsh :tabnew ~/.zshrc<CR>
-nnoremap <Leader>nvim :tabnew ~/.config/nvim/init.vim<CR>
+nnoremap <leader>zsh :tabnew ~/.zshrc<CR>
+nnoremap <leader>nvim :tabnew ~/.config/nvim/init.vim<CR>
 
 " Reload nvim's config
-nnoremap <Leader>r :source ~/.config/nvim/init.vim<CR>
+nnoremap <leader>R :source ~/.config/nvim/init.vim<CR>
 
 "Toggle spell checker (spell toggle)
-nnoremap <silent> <Leader>st :set spell!<CR>:set spell?<CR>
+nnoremap <silent> <leader>st :set spell!<CR>:set spell?<CR>
 
 " Toggle spell dictionary between English and Slovak (spell lang toggle)
 function! s:ToggleSpelllang()
@@ -265,41 +269,41 @@ function! s:ToggleSpelllang()
     endif
     set spelllang?
 endfunction
-nnoremap <silent> <Leader>slt :call <SID>ToggleSpelllang()<CR>
+nnoremap <silent> <leader>slt :call <SID>ToggleSpelllang()<CR>
 
 " Toggle the display of unprintable characters (unprintable toggle)
-nnoremap <silent> <Leader>ut :set list!<CR>:set list?<CR>
+nnoremap <silent> <leader>ut :set list!<CR>:set list?<CR>
 
 " Toggle highlighting of characters exceeding textwidth (long line toggle)
-" TODO
-au BufEnter * hi ExceedCharsGroup guibg=darkblue guifg=white ctermbg=darkblue ctermfg=white
 function! s:ToggleExceedingCharsHighlight()
     if exists('w:long_line_match')
         silent! call matchdelete(w:long_line_match)
         unlet w:long_line_match
-        echo 'Disable highlighting'
+        echo 'Disable highlighting.'
     elseif &textwidth > 0
-        let w:long_line_match=matchadd('ExceedCharsGroup', '\%>' . &textwidth . 'v.\+', -1)
-        let w:long_line_match=matchadd('ExceedCharsGroup', '\%>80v.\+', -1)
-        echo 'Enable highlighting after 80 characters'
+        let w:long_line_match=matchadd('ExceedChars', '\%>' . &textwidth . 'v.\+', -1)
+        echo 'Enable highlighting after ' . &textwidth . ' characters.'
+    else
+        let w:long_line_match=matchadd('ExceedChars', '\%>80v.\+', -1)
+        echo 'Enable highlighting after 80 characters.'
     endif
 endfunction
-nnoremap <silent> <Leader>llt :call <SID>ToggleExceedingCharsHighlight()<CR>
+nnoremap <silent> <leader>llt :call <SID>ToggleExceedingCharsHighlight()<CR>
 
 " Toggle line wrapping (line wrap toggle)
-nnoremap <silent> <Leader>lwt :set nowrap!<CR>:set nowrap?<CR>
+nnoremap <silent> <leader>lwt :set nowrap!<CR>:set nowrap?<CR>
 
 " Toggle the display of colorcolumn (color column toggle)
 function! s:ToggleColorColumn()
     if &colorcolumn > 0
         set colorcolumn=""
     elseif &textwidth > 0
-        let &colorcolumn = &textwidth
+        let &colorcolumn=&textwidth
     else
         set colorcolumn=80
     endif
 endfunction
-nnoremap <silent> <Leader>cct :call <SID>ToggleColorColumn()<CR>
+nnoremap <silent> <leader>cct :call <SID>ToggleColorColumn()<CR>
 
 " Toggle hexdump view of binary files (hex view toggle)
 function! s:ToggleHexdumpView()
@@ -313,7 +317,7 @@ function! s:ToggleHexdumpView()
         set filetype=xxd
     endif
 endfunction
-nnoremap <silent> <Leader>hvt :call <SID>ToggleHexdumpView()<CR>
+nnoremap <silent> <leader>hvt :call <SID>ToggleHexdumpView()<CR>
 
 " Toggle objdump view of binary files (obj view toggle)
 function! s:ToggleObjdumpView()
@@ -340,23 +344,24 @@ function! s:ToggleObjdumpView()
         set readonly
     endif
 endfunction
-nnoremap <silent> <Leader>ovt :call <SID>ToggleObjdumpView()<CR>
+nnoremap <silent> <leader>ovt :call <SID>ToggleObjdumpView()<CR>
 
 " Toggle relative/absolute numbers (number toggle)
-nnoremap <silent> <Leader>nt :set relativenumber!<CR>:set relativenumber?<CR>
+nnoremap <silent> <leader>nt :set relativenumber!<CR>:set relativenumber?<CR>
 
 "------------------------------------------------------------------------------
 " Plugins
 "------------------------------------------------------------------------------
 " zfz.vim
-let g:fzf_command_prefix = 'FZF'
-nnoremap <Leader>bo :FZFBuffers<CR>
-nnoremap <Leader>fo :FZFFiles<CR>
-nnoremap <Leader>go :FZFGFiles<CR>
-nnoremap <Leader>wo :FZFWindows<CR>
-nnoremap <Leader>co :FZFBCommits<CR>
-nnoremap <Leader>sho :FZFHistory/<CR>
-nnoremap <Leader>cho :FZFHistory:<CR>
+let g:fzf_command_prefix='FZF'
+let g:fzf_layout={'window': 'enew'}
+nnoremap <leader>bo :FZFBuffers<CR>
+nnoremap <leader>fo :FZFFiles<CR>
+nnoremap <leader>go :FZFGFiles<CR>
+nnoremap <leader>wo :FZFWindows<CR>
+nnoremap <leader>co :FZFBCommits<CR>
+nnoremap <leader>sho :FZFHistory/<CR>
+nnoremap <leader>cho :FZFHistory:<CR>
 imap <C-x><C-k> <Plug>(fzf-complete-word)
 imap <C-x><C-f> <Plug>(fzf-complete-path)
 imap <C-x><C-j> <Plug>(fzf-complete-file-ag)
@@ -366,37 +371,114 @@ imap <C-x><C-l> <Plug>(fzf-complete-line)
 nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " vim-session
-let g:session_directory = '~/.nvim/session'
-let g:session_command_aliases = 1
-nnoremap <Leader>so :SessionOpen<Space>
-nnoremap <Leader>ss :SessionSave<Space>
-nnoremap <Leader>sd :SessionDelete<CR>
-nnoremap <Leader>sc :SessionClose<CR>
+let g:session_directory='~/.nvim/session'
+let g:session_command_aliases=1
+nnoremap <leader>so :SessionOpen<Space>
+nnoremap <leader>ss :SessionSave<Space>
+nnoremap <leader>sd :SessionDelete<CR>
+nnoremap <leader>sc :SessionClose<CR>
 
 " Airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline_theme = 'wombat'
+let g:airline_powerline_fonts=1
+let g:airline_theme='base16_default'
 " Airline - tabline
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <A-1> <Plug>AirlineSelectTab1
-nmap <A-2> <Plug>AirlineSelectTab2
-nmap <A-3> <Plug>AirlineSelectTab3
-nmap <A-4> <Plug>AirlineSelectTab4
-nmap <A-5> <Plug>AirlineSelectTab5
-nmap <A-6> <Plug>AirlineSelectTab6
-nmap <A-7> <Plug>AirlineSelectTab7
-nmap <A-8> <Plug>AirlineSelectTab8
-nmap <A-9> <Plug>AirlineSelectTab9
-nmap <A-Tab> <Plug>AirlineSelectNextTab
-" TODO nmap <A-S-Tab> <Plug>AirlineSelectPrevTab
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#show_buffers=1
+let g:airline#extensions#tabline#show_tab_type=0
+let g:airline#extensions#tabline#show_close_button=0
+let g:airline#extensions#tabline#tab_nr_type=1
+let g:airline#extensions#tabline#buffer_idx_mode=1
 
-" Neomake
-" TODO
+" Neomake - elixir
+augroup elixir_neomake
+    au BufWritePost *.ex Neomake
+    au BufWritePost *.exs Neomake
+augroup end
 
-let g:solarized_termcolors=256
-colorscheme solarized
+"------------------------------------------------------------------------------
+" Autocmd
+"------------------------------------------------------------------------------
+augroup file_types
+    au!
+    au BufNewFile,BufRead relx.config setl filetype=erlang
+    au BufNewFile,BufRead *.envrc setl filetype=sh
+augroup end
+
+augroup elixir
+    au!
+    au FileType elixir setl tabstop=4
+    au FileType elixir setl softtabstop=4
+    au FileType elixir setl shiftwidth=4
+augroup end
+
+" TODO: eelixir
+
+augroup erlang
+    au!
+    au FileType erlang setl tabstop=4
+    au FileType erlang setl softtabstop=4
+    au FileType erlang setl shiftwidth=4
+augroup end
+
+augroup elm
+    au!
+    au FileType elm setl tabstop=4
+    au FileType elm setl softtabstop=4
+    au FileType elm setl shiftwidth=4
+augroup end
+
+augroup gitcommit
+    au!
+    au FileType gitcommit setl spell
+    au FileType gitcommit setl expandtab
+    au FileType gitcommit setl tabstop=4
+    au FileType gitcommit setl softtabstop=4
+    au FileType gitcommit setl shiftwidth=4
+augroup end
+
+augroup html
+    au!
+    au FileType html setl tabstop=2
+    au FileType htlm setl softtabstop=2
+    au FileType html setl shiftwidth=2
+augroup end
+
+augroup css
+    au!
+    au FileType css setl tabstop=2
+    au FileType css setl softtabstop=2
+    au FileType css setl shiftwidth=2
+augroup end
+
+augroup json
+    au!
+    au FileType json setl tabstop=2
+    au FileType json setl softtabstop=2
+    au FileType json setl shiftwidth=2
+augroup end
+
+augroup markdown
+    au!
+    au FileType markdown setl spell
+    au FileType markdown setl expandtab
+    au FileType markdown setl tabstop=2
+    au FileType markdown setl softtabstop=2
+    au FileType markdown setl shiftwidth=2
+    au FileType markdown setlocal textwidth=80
+augroup end
+
+augroup viml
+    au!
+    au FileType vim setlocal textwidth=80
+augroup end
+
+" Delete trailing white space on save
+func! DeleteTrailing()
+    exe 'normal mz'
+    %s/\s\+$//ge
+    exe 'normal `z'
+endfunc
+
+augroup whitespace
+    au BufWrite * silent call DeleteTrailing()
+augroup end

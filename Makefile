@@ -26,7 +26,7 @@ nvim:
 		mkdir -p ~/.config/nvim/plugged; \
 	fi
 	if [ ! -d ~/.nvim ]; then \
-		mkdir -p ~/.nvim/backup; \
+		mkdir -p ~/.nvim/undo; \
 		mkdir -p ~/.nvim/swap; \
 		mkdir -p ~/.nvim/session; \
 	fi
@@ -34,7 +34,6 @@ nvim:
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	ln -fs $(PWD)/nvim/init.vim ~/.config/nvim/init.vim
 	nvim +PlugInstall +qa!
-	sed -i 's/" colorscheme/colorscheme/' $(PWD)/nvim/init.vim
 
 kerl:
 	ln -fs $(PWD)/kerl/kerlrc ~/.kerlrc
