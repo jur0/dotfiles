@@ -395,6 +395,20 @@ augroup elixir_neomake
     au BufWritePost *.exs Neomake
 augroup end
 
+" elm-vim
+let g:elm_jump_to_error=1
+let g:elm_make_show_warnings=0
+let g:elm_syntastic_show_warnings=0
+let g:elm_format_autosave=1
+let g:elm_browser_command=""
+" TODO: E776: no location list
+au FileType elm nmap <leader>m <Plug>(elm-make)
+au FileType elm nmap <leader>M <Plug>(elm-make-main)
+au FileType elm nmap <leader>t <Plug>(elm-test)
+au FileType elm nmap <leader>c <Plug>(elm-repl)
+au FileType elm nmap <leader>e <Plug>(elm-error-detail)
+au FileType elm nmap <leader>d <Plug>(elm-show-docs)
+
 "------------------------------------------------------------------------------
 " Autocmd
 "------------------------------------------------------------------------------
