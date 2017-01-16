@@ -420,9 +420,9 @@ augroup end
 
 augroup elixir
     au!
-    au FileType elixir setl tabstop=4
-    au FileType elixir setl softtabstop=4
-    au FileType elixir setl shiftwidth=4
+    au FileType elixir setl tabstop=2
+    au FileType elixir setl softtabstop=2
+    au FileType elixir setl shiftwidth=2
 augroup end
 
 " TODO: eelixir
