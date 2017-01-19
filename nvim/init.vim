@@ -389,11 +389,27 @@ let g:airline#extensions#tabline#show_close_button=0
 let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#tabline#buffer_idx_mode=1
 
+" Neomake
+au BufWritePost * Neomake
 " Neomake - elixir
-augroup elixir_neomake
-    au BufWritePost *.ex Neomake
-    au BufWritePost *.exs Neomake
-augroup end
+let g:neomake_elixir_mix_maker={
+      \ 'exe': 'mix',
+      \ 'args': ['compile', '%:p', '--warnings-as-errors'],
+      \ 'errorformat':
+      \ '** %s %f:%l: %m,' .
+      \ '%f:%l: warning: %m'
+      \ }
+let g:neomake_elixir_credo_maker={
+      \ 'exe': 'mix',
+      \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
+      \ 'errorformat': '[%t] %. %f:%l:%c %m'
+      \ }
+let g:neomake_elixir_enabled_makers=['mix']
+let g:neomake_verbose=2
+let g:neomake_open_list=2
+let g:neomake_list_height=5
+let g:neomake_serialize=1
+let g:neomake_serialize_abort_on_error=1
 
 " elm-vim
 let g:elm_jump_to_error=1
