@@ -449,6 +449,10 @@ augroup elixir
     au FileType elixir setl tabstop=2
     au FileType elixir setl softtabstop=2
     au FileType elixir setl shiftwidth=2
+    " TODO: place custom mappings to 'after' directory
+    au FileType elixir nunmap <buffer> <silent> K
+    au FileType elixir nnoremap <buffer> <silent> <C-K> :call alchemist#exdoc()<CR>
+    au FileType elixir noremap <silent> K :bprevious<CR>
 augroup end
 
 " TODO: eelixir
