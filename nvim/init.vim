@@ -180,8 +180,8 @@ let maplocalleader=','
 
 " Create/close buffer
 nnoremap <leader>bn :enew<CR>
-nnoremap <leader>B :bprevious <BAR> bdelete! #<CR>
-nnoremap <leader>BB :bprevious <BAR> bwipeout! #<CR>
+nnoremap <leader>B :bprevious <BAR> bwipeout! #<CR>
+nnoremap <silent> X :bprevious <BAR> bdelete! #<CR>
 
 " Move to previous/next buffer
 noremap <silent> J :bnext<CR>
