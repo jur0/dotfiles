@@ -16,6 +16,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
 Plug 'benekastah/neomake'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -352,6 +353,15 @@ nnoremap <silent> <leader>nt :set relativenumber!<CR>:set relativenumber?<CR>
 "------------------------------------------------------------------------------
 " Plugins
 "------------------------------------------------------------------------------
+" Netrw & vinegar (file browser)
+let g:netrw_list_hide=''
+let g:netrw_altfile=1   " last edited file '#'
+let g:netrw_liststyle=3
+let g:netrw_altv=1      " open files on right
+let g:netrw_winsize=20  " preview winsize
+let g:netrw_preview=1   " open previews vertically
+noremap <leader><space> :Lexplore<CR>
+
 " zfz.vim
 let g:fzf_command_prefix='FZF'
 let g:fzf_layout={'window': 'enew'}
@@ -501,6 +511,12 @@ augroup viml
     au!
     au FileType vim setlocal textwidth=80
 augroup end
+
+" Open netwr at start
+augroup netrw_group
+    au!
+    au VimEnter * :Lexplore
+augroup END
 
 " Delete trailing white space on save
 func! DeleteTrailing()
