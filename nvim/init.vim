@@ -5,6 +5,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'ervandew/supertab'
 Plug 'FooSoft/vim-argwrap'
 Plug 'dietsche/vim-lastplace'
 Plug 'xolox/vim-misc'
@@ -376,6 +378,10 @@ imap <C-x><C-k> <Plug>(fzf-complete-word)
 imap <C-x><C-f> <Plug>(fzf-complete-path)
 imap <C-x><C-j> <Plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <Plug>(fzf-complete-line)
+
+" deoplete
+let g:deoplete#enable_at_startup=1
+inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
 
 " vim-argwrap
 nnoremap <silent> <leader>a :ArgWrap<CR>
