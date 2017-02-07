@@ -183,7 +183,7 @@ let maplocalleader=','
 " Create/close buffer
 nnoremap <leader>bn :enew<CR>
 nnoremap <leader>B :bprevious <BAR> bwipeout! #<CR>
-nnoremap <silent> X :bprevious <BAR> bdelete! #<CR>
+nnoremap <silent> Z :bprevious <BAR> bdelete! #<CR>
 
 " Move to previous/next buffer
 noremap <silent> J :bnext<CR>
@@ -406,8 +406,9 @@ let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#tabline#buffer_idx_mode=1
 
 " Neomake
-au BufWritePost * Neomake
 " Neomake - elixir
+au BufWritePost *.ex Neomake
+au BufWritePost *.exs Neomake
 let g:neomake_elixir_mix_maker={
       \ 'exe': 'mix',
       \ 'args': ['compile', '%:p', '--warnings-as-errors'],
@@ -521,12 +522,6 @@ augroup viml
     au!
     au FileType vim setlocal textwidth=80
 augroup end
-
-" Open netwr at start
-augroup netrw_group
-    au!
-    au VimEnter * :Lexplore
-augroup END
 
 " Delete trailing white space on save
 func! DeleteTrailing()
