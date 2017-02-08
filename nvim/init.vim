@@ -30,6 +30,7 @@ Plug 'vim-erlang/vim-erlang-tags', {'for': 'erlang'}
 
 Plug 'elixir-lang/vim-elixir', {'for': ['elixir', 'eelixir']}
 Plug 'slashmili/alchemist.vim', {'for': ['elixir', 'eelixir']}
+Plug 'lucidstack/hex.vim'
 "Plug 'avdgaag/vim-phoenix'
 
 Plug 'ElmCast/elm-vim', {'for': 'elm'}
