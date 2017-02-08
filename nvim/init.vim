@@ -511,7 +511,6 @@ augroup end
 
 augroup markdown
     au!
-    au FileType markdown setl spell
     au FileType markdown setl expandtab
     au FileType markdown setl tabstop=2
     au FileType markdown setl softtabstop=2
