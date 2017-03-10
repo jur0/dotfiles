@@ -30,8 +30,6 @@ Plug 'vim-erlang/vim-erlang-tags', {'for': 'erlang'}
 
 Plug 'elixir-lang/vim-elixir', {'for': ['elixir', 'eelixir']}
 Plug 'slashmili/alchemist.vim', {'for': ['elixir', 'eelixir']}
-Plug 'mattn/webapi-vim',    " Needed for hex.vim
-Plug 'lucidstack/hex.vim', {'for': 'elixir'}
 "Plug 'avdgaag/vim-phoenix'
 
 Plug 'ElmCast/elm-vim', {'for': 'elm'}
@@ -164,14 +162,20 @@ set sessionoptions+=winsize
 " TODO: shada?
 
 " Python paths
-let g:python_host_prog='/usr/bin/python2'
-let g:python3_host_prog='/usr/bin/python3'
+let os=substitute(system('uname'), '\n', '', '')
+if os == 'Darwin' || os == 'Mac'
+    let g:python_host_prog='/usr/local/bin/python2'
+    let g:python3_host_prog='/usr/local/bin/python3'
+elseif os == 'Linux'
+    let g:python_host_prog='/usr/bin/python2'
+    let g:python3_host_prog='/usr/bin/python3'
+endif
 
 "------------------------------------------------------------------------------
 " Colors
 "------------------------------------------------------------------------------
 syntax on               " Syntax highlighting
-set background=dark
+"set background=dark
 colorscheme molokai
 
 hi ExceedChars ctermfg=white ctermbg=darkblue
@@ -534,3 +538,7 @@ endfunc
 augroup whitespace
     au BufWrite * silent call DeleteTrailing()
 augroup end
+
+if filereadable(expand('.vimrc.local'))
+    source .nvim.local
+endif
