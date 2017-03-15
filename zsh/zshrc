@@ -37,7 +37,7 @@ POWERLINE_DETECT_SSH="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
-plugins=(brew git git-extras github mix-fast svn osx ssh-agent tmux vagrant zsh-syntax-highlighting vi-mode)
+plugins=(brew git git-extras github history-substring-search mix-fast svn osx ssh-agent tmux vagrant zsh-syntax-highlighting vi-mode)
 
 typeset -U path
 
@@ -82,10 +82,8 @@ bindkey -v
 export VAGRANT_HOME=~/VM/vagrant
 export TERMINFO=~/.terminfo
 
+[ -f ~/.kerlrc ] && source ~/.kerlrc
+[ -f ~/.kiex/scripts/kiex ] && source ~/.kiex/scripts/kiex
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.kerlrc ] && source ~/.kerlrc &&
-    . $KERL_DEFAULT_VERSION_DIR/19.1.5/activate
-[ -f ~/.kiex/scripts/kiex ] && source ~/.kiex/scripts/kiex &&
-    source ~/.kiex/elixirs/elixir-1.4.0-rc.1.env
 
 eval "$(direnv hook zsh)"
