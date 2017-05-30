@@ -18,8 +18,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar'
 Plug 'benekastah/neomake'
+Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -48,7 +48,6 @@ set autoread            " Set to auto read when a file is changed
 set autowrite           " Automatically save before :next, :make etc.
 set scrolloff=5         " Keep context when using j/k
 set sidescroll=5        " Keep context when using h/l
-set esckeys             " Cursor keys in insert mode
 set magic               " Use 'magic' patterns
 set nostartofline       " Keep the cursor's column when jumping to other rows
 set nojoinspaces        " Insert just one space joining lines with J
@@ -361,14 +360,8 @@ nnoremap <silent> <leader>nt :set relativenumber!<CR>:set relativenumber?<CR>
 "------------------------------------------------------------------------------
 " Plugins
 "------------------------------------------------------------------------------
-" Netrw & vinegar (file browser)
-let g:netrw_list_hide=''
-let g:netrw_altfile=1   " last edited file '#'
-let g:netrw_liststyle=3
-let g:netrw_altv=1      " open files on right
-let g:netrw_winsize=20  " preview winsize
-let g:netrw_preview=1   " open previews vertically
-noremap <leader><space> :Lexplore<CR>
+" NERDTree
+noremap <leader><space> :NERDTreeToggle<CR>
 
 " zfz.vim
 let g:fzf_command_prefix='FZF'
@@ -395,6 +388,7 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 " vim-session
 let g:session_directory='~/.nvim/session'
 let g:session_command_aliases=1
+let g:session_autosave='no'
 nnoremap <leader>so :SessionOpen<Space>
 nnoremap <leader>ss :SessionSave<Space>
 nnoremap <leader>sd :SessionDelete<CR>
