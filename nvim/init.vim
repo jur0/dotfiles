@@ -13,6 +13,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jceb/vim-orgmode'
 Plug 'tomasr/molokai'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -28,9 +29,14 @@ Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-skeletons', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-tags', {'for': 'erlang'}
 
+Plug 'tomlion/vim-solidity'
+
 Plug 'elixir-lang/vim-elixir', {'for': ['elixir', 'eelixir']}
 Plug 'slashmili/alchemist.vim', {'for': ['elixir', 'eelixir']}
 "Plug 'avdgaag/vim-phoenix'
+
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'racer-rust/vim-racer', {'for': 'rust'}
 
 Plug 'ElmCast/elm-vim', {'for': 'elm'}
 
@@ -57,6 +63,7 @@ set showmatch           " Show matching brackets when typing them
 set secure              " Forbid loading of .vimrc under $PWD
 set nomodeline          " Modelines have been a source of vulnerabilities
 set iskeyword+=-        " Makes foo-bar one word
+set mouse=a             " Allow mouse
 
 " No annoying sound on errors
 set noerrorbells novisualbell t_vb=
@@ -216,9 +223,6 @@ noremap <silent> Q :q!<CR>
 " Search and replace
 nnoremap <leader>r :%s//g<Left><Left>
 
-" Start of a command
-nnoremap ; :
-
 " Save all buffers
 nnoremap <silent> <C-s> :w<CR>:wa<CR>
 inoremap <silent> <C-s> <Esc>:w<CR><Esc>:wa<CR>
@@ -235,7 +239,7 @@ nnoremap <silent> <leader>to :terminal<CR>
 nnoremap <silent> <leader>tvo :vsplit term://$SHELL<CR>
 nnoremap <silent> <leader>tho :split term://$SHELL<CR>
 
-" Leave insert mode in terminal
+" Leave insert mode in terminal (Alt-q)
 tnoremap <A-q> <C-\><C-n>
 
 " Termina windows switching
@@ -362,6 +366,7 @@ nnoremap <silent> <leader>nt :set relativenumber!<CR>:set relativenumber?<CR>
 "------------------------------------------------------------------------------
 " NERDTree
 noremap <leader><space> :NERDTreeToggle<CR>
+noremap .<space> :NERDTreeFind<CR>
 
 " zfz.vim
 let g:fzf_command_prefix='FZF'
@@ -441,6 +446,9 @@ au FileType elm nmap <leader>t <Plug>(elm-test)
 au FileType elm nmap <leader>c <Plug>(elm-repl)
 au FileType elm nmap <leader>e <Plug>(elm-error-detail)
 au FileType elm nmap <leader>d <Plug>(elm-show-docs)
+
+" rust.vim
+let g:rustfmt_autosave=1
 
 "------------------------------------------------------------------------------
 " Autocmd

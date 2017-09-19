@@ -39,12 +39,22 @@ POWERLINE_DETECT_SSH="true"
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 plugins=(brew git git-extras github history-substring-search mix-fast svn osx ssh-agent tmux vagrant zsh-syntax-highlighting vi-mode)
 
+# Removes duplicates of the path array
 typeset -U path
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/X11/bin
+export PATH
+path+=(/bin)
+path+=(/usr/bin)
+path+=(/usr/local/bin)
+path+=(/sbin)
+path+=(/usr/sbin)
+path+=(/usr/local/sbin)
+path+=(/opt/X11/bin)
 path+=(~/bin)
+path+=(~/.npm-global/bin)
+path+=(~/.cargo/bin)
 
 export LANG=en_US.UTF-8
 export LC_TIME=en_GB.UTF-8
@@ -76,8 +86,15 @@ function pn() {
     fi
 }
 
+# Do not ask to use enter key for last command
 unsetopt hist_verify
+
+# vi key mapping in zsh
 bindkey -v
+bindkey '^W' backward-kill-word
+
+# Rust source (for completion)
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 export VAGRANT_HOME=~/VM/vagrant
 export TERMINFO=~/.terminfo
