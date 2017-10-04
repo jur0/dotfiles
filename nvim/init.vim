@@ -23,6 +23,7 @@ Plug 'benekastah/neomake'
 Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'Shougo/echodoc.vim'
 
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
@@ -35,6 +36,7 @@ Plug 'elixir-lang/vim-elixir', {'for': ['elixir', 'eelixir']}
 Plug 'slashmili/alchemist.vim', {'for': ['elixir', 'eelixir']}
 "Plug 'avdgaag/vim-phoenix'
 
+Plug 'autozimu/LanguageClient-neovim', { 'for': 'rust', 'do': ':UpdateRemotePlugins' }
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'racer-rust/vim-racer', {'for': 'rust'}
 
@@ -440,15 +442,15 @@ let g:elm_syntastic_show_warnings=0
 let g:elm_format_autosave=1
 let g:elm_browser_command=""
 " TODO: E776: no location list
-au FileType elm nmap <leader>m <Plug>(elm-make)
-au FileType elm nmap <leader>M <Plug>(elm-make-main)
-au FileType elm nmap <leader>t <Plug>(elm-test)
-au FileType elm nmap <leader>c <Plug>(elm-repl)
-au FileType elm nmap <leader>e <Plug>(elm-error-detail)
-au FileType elm nmap <leader>d <Plug>(elm-show-docs)
 
 " rust.vim
 let g:rustfmt_autosave=1
+
+" rust language server
+let g:LanguageClient_serverCommands={
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ }
+let g:LanguageClient_autoStart=1
 
 "------------------------------------------------------------------------------
 " Autocmd
@@ -484,6 +486,24 @@ augroup elm
     au FileType elm setl tabstop=4
     au FileType elm setl softtabstop=4
     au FileType elm setl shiftwidth=4
+    au FileType elm nnoremap <leader>m <Plug>(elm-make)
+    au FileType elm nnoremap <leader>M <Plug>(elm-make-main)
+    au FileType elm nnoremap <leader>t <Plug>(elm-test)
+    au FileType elm nnoremap <leader>c <Plug>(elm-repl)
+    au FileType elm nnoremap <leader>e <Plug>(elm-error-detail)
+    au FileType elm nnoremap <leader>d <Plug>(elm-show-docs)
+augroup end
+
+augroup rust
+    au!
+    au FileType rust setl signcolumn=yes
+    " Rust Language server commands
+    au FileType rust nnoremap <leader>rr :call LanguageClient_textDocument_rename()<CR>
+    au FileType rust nnoremap <leader>h :call LanguageClient_textDocument_hover()<CR>
+    au FileType rust nnoremap <leader>d :call LanguageClient_textDocument_definition()<CR>
+    au FileType rust nnoremap <leader>s :call LanguageClient_textDocument_documentSymbol()<CR>
+    au FileType rust nnoremap <leader>f :call LanguageClient_textDocument_formatting()<CR>
+    au FileType rust nnoremap <leader>a :call LanguageClient_textDocument_codeAction()<CR>
 augroup end
 
 augroup gitcommit
