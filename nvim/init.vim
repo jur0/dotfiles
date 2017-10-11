@@ -36,9 +36,11 @@ Plug 'elixir-lang/vim-elixir', {'for': ['elixir', 'eelixir']}
 Plug 'slashmili/alchemist.vim', {'for': ['elixir', 'eelixir']}
 "Plug 'avdgaag/vim-phoenix'
 
-Plug 'autozimu/LanguageClient-neovim', { 'for': 'rust', 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {'for': 'rust', 'do': ':UpdateRemotePlugins'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'racer-rust/vim-racer', {'for': 'rust'}
+
+Plug 'cespare/vim-toml', {'for': 'toml'}
 
 Plug 'ElmCast/elm-vim', {'for': 'elm'}
 
@@ -496,6 +498,10 @@ augroup end
 
 augroup rust
     au!
+    au FileType rust setl tabstop=4
+    au FileType rust setl shiftwidth=4
+    au FileType rust setl softtabstop=4
+    au FileType rust setl textwidth=80
     au FileType rust setl signcolumn=yes
     " Rust Language server commands
     au FileType rust nnoremap <leader>rr :call LanguageClient_textDocument_rename()<CR>
