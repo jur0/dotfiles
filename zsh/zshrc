@@ -95,6 +95,8 @@ bindkey '^W' backward-kill-word
 
 # Rust source (for completion)
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+# Library path setup
+export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 
 export VAGRANT_HOME=~/VM/vagrant
 export TERMINFO=~/.terminfo
