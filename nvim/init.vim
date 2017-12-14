@@ -156,7 +156,25 @@ set nospell             " Disable spellchecking by default
 set spelllang=en_us,en_gb
 
 " Clipboard
-set clipboard=unnamed
+if has('clipboard')
+    set clipboard=unnamed
+else
+    " Yanked text is propagated to the host (OSX)
+    function! PropagatePasteBufferToOSX()
+        let @n=getreg('"')
+        call system('rpbcopy', @n)
+        echo "remote copy done"
+    endfunction
+
+    " System clipboard from the host (OSX) is pasted
+    function! PopulatePasteBufferFromOSX()
+        let @" = system('rpbpaste')
+        echo "remote paste done"
+    endfunction
+
+    nnoremap <leader>9 :call PropagatePasteBufferToOSX()<cr>
+    nnoremap <leader>0 :call PopulatePasteBufferFromOSX()<cr>
+endif
 
 " Session
 set sessionoptions=blank
