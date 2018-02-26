@@ -5,6 +5,21 @@
     name = Juraj Hlista
     email = jurajhlista@gmail.com
 
+[credential]
+    helper = store
+
+[core]
+    editor = nvim
+    pager = less
+    whitespace = trailing-space,space-before-tab,-indent-with-non-tab
+    excludesfile = ~/.gitignore_global
+    # Make `git rebase` safer on OS X.
+    # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+    trustctime = false
+    # Speed up commands involving untracked files such as `git status`.
+    # https://git-scm.com/docs/git-update-index#_untracked_cache
+    untrackedCache = true
+
 [color]
     ui = true
 
@@ -13,14 +28,30 @@
     match = red bold
     separator = cyan
 
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold # line info
+    old = red # deletions
+    new = green # additions
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[diff]
+    renames = copies
+
 [grep]
   linenumber = true
 
-[core]
-    editor = nvim
-    pager = less
-    whitespace = trailing-space,space-before-tab
-    excludesfile = ~/.gitignore_global
+[merge]
+    tool = vimdiff
 
 [alias]
     a = add
@@ -71,8 +102,6 @@
     undo = reset --soft HEAD^
     today = "!git ll --since=midnight"
 
-[merge]
-    tool = vimdiff
+[include]
+    path = ~/.gitconfig.local
 
-[credential]
-    helper = store
