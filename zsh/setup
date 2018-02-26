@@ -1,0 +1,119 @@
+#!/usr/bin/env zsh
+
+# zsh plugins are managed via antigen, which was installed by brew (brew.sh).
+# Some of the pllugins are taken from oh-my-zsh (installed in brew.sh).
+
+source "/usr/local/share/antigen/antigen.zsh"
+
+antigen use oh-my-zsh
+
+antigen bundle brew
+antigen bundle colored-man-pages
+antigen bundle nmap
+antigen bundle ssh-agent
+antigen bundle vi-mode
+antigen bundle joel-porquet/zsh-dircolors-solarized.git
+antigen bundle MichaelAquilina/zsh-you-should-use
+antigen bundle supercrabtree/k
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
+# Syntax highlighting must be loaded before history substring search.
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
+
+antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
+
+antigen apply
+
+# Prompt settings for spaceship-prompt only. If other prompt theme is used,
+# this can be removed.
+SPACESHIP_PROMPT_ORDER=(
+    time          # Time stampts section
+    user          # Username section
+    host          # Hostname section
+    dir           # Current directory section
+    git           # Git section (git_branch + git_status)
+    #hg            # Mercurial section (hg_branch  + hg_status)
+    package       # Package version
+    #node          # Node.js section
+    #ruby          # Ruby section
+    elixir        # Elixir section
+    #xcode         # Xcode section
+    #swift         # Swift section
+    golang        # Go section
+    #php           # PHP section
+    rust          # Rust section
+    haskell       # Haskell Stack section
+    #julia         # Julia section
+    #docker        # Docker section
+    #aws           # Amazon Web Services section
+    #venv          # virtualenv section
+    #conda         # conda virtualenv section
+    #pyenv         # Pyenv section
+    #dotnet        # .NET section
+    #ember         # Ember.js section
+    #kubecontext   # Kubectl context section
+    exec_time     # Execution time
+    line_sep      # Line break
+    #battery       # Battery level and status
+    vi_mode       # Vi-mode indicator
+    jobs          # Background jobs indicator
+    exit_code     # Exit code section
+    char          # Prompt character
+)
+
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_TIME_PREFIX=''
+SPACESHIP_TIME_SUFFIX=' '
+SPACESHIP_USER_SHOW=always
+SPACESHIP_USER_PREFIX='['
+SPACESHIP_USER_SUFFIX='@'
+SPACESHIP_USER_COLOR=green
+SPACESHIP_HOST_SHOW=always
+SPACESHIP_HOST_PREFIX=''
+SPACESHIP_HOST_SUFFIX='] '
+SPACESHIP_DIR_TRUNC=0
+SPACESHIP_DIR_PREFIX='['
+SPACESHIP_DIR_SUFFIX='] '
+SPACESHIP_VI_MODE_SHOW=true
+SPACESHIP_BATTERY_SHOW=false
+SPACESHIP_EXIT_CODE_SHOW=true
+SPACESHIP_CHAR_SYMBOL="❯"
+SPACESHIP_CHAR_SUFFIX=" "
+
+# Setup dircolors for ls command.
+setupsolarized dircolors.256dark
+
+# History.
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+setopt auto_menu
+setopt complete_in_word
+
+# vi key mapping in zsh.
+bindkey -v
+# Set 0.1 second timeout to switch to Normal moce with <esc>.
+export KEYTIMEOUT=1
+bindkey '^W' backward-kill-word
+bindkey '^P' up-line-or-history
+bindkey '^N' down-line-or-history
+# ^[[A and ^[OA are the same key, but including both to make sure it works.
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[OA' history-substring-search-up
+bindkey '^[OB' history-substring-search-down
+
+# fzf.
+source "$HOME/.fzf.zsh"
+

@@ -1,108 +1,15 @@
-ZSH=$HOME/.oh-my-zsh
+#!/usr/bin/env zsh
 
-ZSH_THEME="candy"
+# Get the directory of this file (zshrc) and env, setup, aliases and functions.
+ZSH_CONFIG_DIR=`dirname $(readlink $HOME/.zshrc)`
 
-POWERLINE_FULL_CURRENT_PATH="true"
-POWERLINE_RIGHT_B=""
-POWERLINE_RIGHT_A="exit-status"
-POWERLINE_SHOW_GIT_ON_RIGHT="true"
-POWERLINE_HIDE_USER_NAME="true"
-POWERLINE_NO_BLANK_LINE="true"
-POWERLINE_DETECT_SSH="true"
+# Exports. This could be sourced by placing the file in $HOME/.zshenv,
+# but not on OSX!
+source $ZSH_CONFIG_DIR/env
+# zsh settings.
+source $ZSH_CONFIG_DIR/setup
+# Aliases.
+source $ZSH_CONFIG_DIR/aliases
+# Functions.
+source $ZSH_CONFIG_DIR/functions
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
-plugins=(brew git git-extras github history-substring-search mix-fast svn osx ssh-agent tmux vagrant zsh-syntax-highlighting vi-mode)
-
-# Removes duplicates of the path array
-typeset -U path
-
-source $ZSH/oh-my-zsh.sh
-
-export PATH
-path+=(/bin)
-path+=(/usr/bin)
-path+=(/usr/local/bin)
-path+=(/sbin)
-path+=(/usr/sbin)
-path+=(/usr/local/sbin)
-path+=(/opt/X11/bin)
-path+=(~/bin)
-path+=(~/.npm-global/bin)
-path+=(~/.cargo/bin)
-
-export LANG=en_US.UTF-8
-export LC_TIME=en_GB.UTF-8
-export LC_PAPER=en_GB.UTF-8
-export LC_MEASUREMENT=en_GB.UTF-8
-
-export EDITOR="/usr/bin/nvim"
-export PAGER="/usr/bin/less"
-
-export BLOCKSIZE=human-readable
-
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
-
-alias m="make"
-alias mj="make -j $(nproc)"
-alias g="git"
-alias vim="nvim"
-alias v="nvim"
-
-alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
-
-# ping network
-function pn() {
-    if [ $# -eq 0 ]; then
-        ping google.com
-    else
-        ping "$@"
-    fi
-}
-
-# Do not ask to use enter key for last command
-unsetopt hist_verify
-
-# vi key mapping in zsh
-bindkey -v
-bindkey '^W' backward-kill-word
-
-# Rust source (for completion)
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-# Library path setup
-export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
-
-export VAGRANT_HOME=~/VM/vagrant
-export TERMINFO=~/.terminfo
-
-[ -f ~/.kerlrc ] && source ~/.kerlrc
-[ -f ~/.kiex/scripts/kiex ] && source ~/.kiex/scripts/kiex
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-eval "$(direnv hook zsh)"

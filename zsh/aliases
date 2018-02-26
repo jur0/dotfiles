@@ -1,0 +1,167 @@
+#!/usr/bin/env zsh
+
+# List files. coreutils replaces OSX's ls, so we use --color option
+# instead of -G.
+alias ls="ls --color=always"
+alias l="ls -lah --color=always"
+alias la="ls -lAh --color=always"
+alias ll="ls -lh --color=always"
+alias ls="ls --color=always"
+alias lsa="ls -lah --color=always"
+# List only directories.
+alias lsd="ls -d */"
+alias lld="ls -ld */"
+# Files can have ACL applied (the + sign at the end of file permissions).
+# There is no getfacl and setfacl command, but OSX's ls supports ACL.
+alias llacl="/bin/ls -Gle"
+alias laacl="/bin/ls -GlAe"
+# OSX also can have extended attributes applied on files (the @ sign at the
+# end of file permissions). TODO
+
+alias dotfiles="cd ~/data/project/github/dotfiles"
+
+alias k="k -Ah"
+
+# Git commad aliases are in .gitconfig.
+alias g="git"
+
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+# Alternative to tail -f.
+alias lessf="less +F"
+
+# Recursively delete .DS_Store` files.
+alias dsclean="find . -type f -name '*.DS_Store' -ls -delete"
+
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+# Intuitive map function.
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+alias v="nvim"
+alias zshconf="$EDITOR ~/.zshrc"
+alias vconf="$EDITOR ~/.config/nvim/init.vim"
+
+# Print each PATH/FPATH/MANPATH entry on a separate line.
+alias path='echo -e ${PATH//:/\\n}'
+alias fpath='echo -e ${FPATH//:/\\n}'
+alias manpath='echo -e ${MANPATH//:/\\n}'
+
+# IP addresses.
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Canonical hex dump; some systems have this symlinked.
+command -v hd > /dev/null || alias hd="hexdump -C"
+
+# macOS has no `md5sum`, so use `md5` as a fallback.
+command -v md5sum > /dev/null || alias md5sum="md5"
+
+# macOS has no `sha1sum`, so use `shasum` as a fallback.
+command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# Get week number.
+alias week='date +%V'
+
+# Stopwatch.
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# Generic colouriser
+GRC=`which grc 2>/dev/null`
+if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
+    alias colourify="$GRC -es --colour=auto"
+    alias configure='colourify ./configure'
+    alias diff='colourify diff'
+    alias make='colourify make'
+    alias gcc='colourify gcc'
+    alias g++='colourify g++'
+    alias as='colourify as'
+    alias gas='colourify gas'
+    alias ld='colourify ld'
+    alias netstat='colourify netstat'
+    alias ping='colourify ping'
+    alias traceroute='colourify /usr/sbin/traceroute'
+    alias head='colourify head'
+    alias tail='colourify tail'
+    alias dig='colourify dig'
+    alias mount='colourify mount'
+    alias ps='colourify ps'
+    alias mtr='colourify mtr'
+    alias df='colourify df'
+    alias ifconfig='colourify ifconfig'
+#    if [ $(uname) = "Linux" ] && [ -r "/usr/share/grc/conf.ifconfig" ]; then
+#        alias ip='colourify -c /usr/share/grc/conf.ifconfig ip'
+#    fi
+fi
+
+# Upgrade system.
+alias osxupdate="echo \"*** softwareupdate -l (JUST listing updates!)\" && softwareupdate -l \
+    && echo \"*** mas upgrade\" && sudo mas upgrade \
+    && echo \"*** brew update\" && brew update \
+    && echo \"*** brew upgrade\" &&  brew upgrade \
+    && echo \"*** brew cask upgrade\" && brew cask upgrade \
+    && echo \"*** brew cleanup\" && brew cleanup \
+    && echo \"*** brew cask cleanup\" && brew cask cleanup"
+
+# Merge pdfs.
+alias mergepdf="/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py"
+
+# Disable Spotlight
+alias spotoff="sudo mdutil -a -i off"
+# Enable Spotlight
+alias spoton="sudo mdutil -a -i on"
+
+# PlistBuddy alias, because sometimes `defaults` just doesn’t cut it.
+alias plistbuddy="/usr/libexec/PlistBuddy"
+
+# Airport CLI alias.
+alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+
+# Random MAC address for wifi adapter. MAC addresses will reset to hardware
+# defaults on each boot.
+alias randmac='sudo ifconfig en0 ether `openssl rand -hex 6 | sed "s/\(..\)/\1:/g;s/.$//"`'
+
+# Active network interfaces.
+GRCAT=`which grcat 2>/dev/null`
+if [ "$TERM" != dumb ] && [ -n "$GRCAT" ] && [ -r /usr/local/share/grc/conf.ifconfig ]; then
+	alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active' | grcat /usr/local/share/grc/conf.ifconfig"
+else
+	alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
+fi
+
+# Flush Directory Service cache.
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+# Clean up LaunchServices to remove duplicates in the “Open With” menu.
+alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+
+# Web browsers.
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias brave='/Applications/Brave.app/Contents/MacOS/Brave'
+
+# Trim new lines and copy to clipboard.
+alias c="tr -d '\n' | pbcopy"
+
+# TODO
+# Empty the Trash on all mounted volumes and the main HDD.
+# Also, clear Apple’s System Logs to improve shell startup speed.
+# Finally, clear download history from quarantine. https://mths.be/bum
+#alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+
+# Show/hide hidden files in Finder.
+alias hiddenshow="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hiddenhide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting).
+alias desktopshow="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias desktophide="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+
+# Linux users are used to "locate" command
+alias locate="mdfind"
+

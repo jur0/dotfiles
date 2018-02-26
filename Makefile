@@ -1,6 +1,11 @@
-.PHONY: zsh git vim nvim kerl direnv tmux vagrant
+.PHONY: curl zsh git nvim kerl direnv tmux vagrant
 
-all: zsh git nvim tmux kerl direnv
+all: curl zsh git nvim tmux
+
+erlang: kerl direnv
+
+curl:
+	ln -fs $(PWD)/curl/curlrc ~/.curlrc
 
 zsh:
 	ln -fs $(PWD)/zsh/zshrc ~/.zshrc
@@ -8,18 +13,6 @@ zsh:
 git:
 	ln -fs $(PWD)/git/gitconfig ~/.gitconfig
 	ln -fs $(PWD)/git/gitignore_global ~/.gitignore_global
-
-vim:
-	if [ ! -d ~/.vim ]; then \
-		mkdir -p ~/.vim/bundle; \
-		mkdir -p ~/.vim/tmp/backup; \
-		mkdir -p ~/.vim/tmp/swap; \
-		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim; \
-	fi
-	ln -fs $(PWD)/vim/ftplugin ~/.vim/ftplugin
-	ln -fs $(PWD)/vim/ftdetect ~/.vim/ftdetect
-	vim +PluginInstall +qall
-	ln -fs $(PWD)/vim/vimrc ~/.vimrc
 
 nvim:
 	if [ ! -d ~/.config/nvim ]; then \
@@ -51,3 +44,4 @@ vagrant:
 	if [ ! -d ~/VM/vagrant ]; then \
 		mkdir -p ~/VM/vagrant; \
 	fi
+

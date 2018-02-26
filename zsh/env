@@ -1,0 +1,46 @@
+#!/usr/bin/env zsh
+
+# .zshenv is always sourced, it contains exported variables that should be
+# available to other programs. BUT on OSX:
+# https://unix.stackexchange.com/questions/246751/how-to-know-why-and-where-the-path-env-variable-is-set
+
+# GNU coreutils installed by brew are used instead of those available in OSX
+# by default. Also, other utils installed by brew, located in /usr/local/bin
+# directory, take precedence.
+path=('/usr/local/opt/coreutils/libexec/gnubin')
+path+=('/usr/local/bin')
+path+=('/bin')
+path+=('/usr/bin')
+path+=('/usr/local/sbin')
+path+=('/sbin')
+path+=('/usr/sbin')
+path+=('~/bin')
+path+=("$HOME/.cargo/bin")
+#path+=(~/.npm-global/bin)
+export PATH
+
+# Prefer manual pages of GNU coreutils and brew installed utils.
+manpath=('/usr/local/opt/coreutils/libexec/gnuman')
+manpath+=('/usr/local/share/man')
+manpath+=('/usr/share/man')
+export MANPATH
+
+export LANG=en_US.UTF-8
+export LC_TIME=en_GB.UTF-8
+export LC_PAPER=en_GB.UTF-8
+export LC_MEASUREMENT=en_GB.UTF-8
+
+export EDITOR="nvim"
+export PAGER="less"
+# Don't clear the screen after quitting a manual page.
+export MANPAGER="less -X"
+export LESS="-R"
+
+# File's default permissions: -rw-------
+# Directory's default permissions: drwx------
+umask u=rwx,g=,o=
+
+# Homebrew
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+export HOMEBREW_CASK_OPTS=--require-sha

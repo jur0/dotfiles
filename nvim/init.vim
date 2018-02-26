@@ -3,7 +3,6 @@
 "------------------------------------------------------------------------------
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'ervandew/supertab'
@@ -386,6 +385,10 @@ nnoremap <silent> <leader>nt :set relativenumber!<CR>:set relativenumber?<CR>
 "------------------------------------------------------------------------------
 " Plugins
 "------------------------------------------------------------------------------
+"FZF
+" Add fzf binary to runtime path
+set rtp+=/usr/local/opt/fzf
+
 " NERDTree
 noremap <leader><space> :NERDTreeToggle<CR>
 noremap .<space> :NERDTreeFind<CR>
