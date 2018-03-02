@@ -18,7 +18,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'benekastah/neomake'
-Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Shougo/echodoc.vim'
@@ -388,10 +387,6 @@ nnoremap <silent> <leader>nt :set relativenumber!<CR>:set relativenumber?<CR>
 " Add fzf binary to runtime path
 set rtp+=/usr/local/opt/fzf
 
-" NERDTree
-noremap <leader><space> :NERDTreeToggle<CR>
-noremap .<space> :NERDTreeFind<CR>
-
 " zfz.vim
 let g:fzf_command_prefix='FZF'
 let g:fzf_layout={'window': 'enew'}
@@ -406,6 +401,11 @@ imap <C-x><C-k> <Plug>(fzf-complete-word)
 imap <C-x><C-f> <Plug>(fzf-complete-path)
 imap <C-x><C-j> <Plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <Plug>(fzf-complete-line)
+
+" netrw
+let g:netrw_banner=0
+let g:netrw_home='~/.nvim/netrw'
+noremap <leader><space> :Lex<CR>
 
 " deoplete
 let g:deoplete#enable_at_startup=1

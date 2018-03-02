@@ -22,6 +22,7 @@ nvim:
 		mkdir -p ~/.nvim/undo; \
 		mkdir -p ~/.nvim/swap; \
 		mkdir -p ~/.nvim/session; \
+		mkdir -p ~/.nvim/netrw; \
 	fi
 	curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
