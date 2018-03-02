@@ -10,8 +10,7 @@ Plug 'FooSoft/vim-argwrap'
 Plug 'dietsche/vim-lastplace'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'jceb/vim-orgmode'
 Plug 'tomasr/molokai'
 Plug 'airblade/vim-gitgutter'
@@ -263,7 +262,7 @@ nnoremap <silent> <leader>tho :split term://$SHELL<CR>
 " Leave insert mode in terminal (Alt-q)
 tnoremap <A-q> <C-\><C-n>
 
-" Termina windows switching
+" Terminal windows switching
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-h> <C-\><C-n><C-w>h
@@ -424,16 +423,27 @@ nnoremap <leader>ss :SessionSave<Space>
 nnoremap <leader>sd :SessionDelete<CR>
 nnoremap <leader>sc :SessionClose<CR>
 
-" Airline
-let g:airline_powerline_fonts=1
-let g:airline_theme='base16_default'
-" Airline - tabline
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#show_buffers=1
-let g:airline#extensions#tabline#show_tab_type=0
-let g:airline#extensions#tabline#show_close_button=0
-let g:airline#extensions#tabline#tab_nr_type=1
-let g:airline#extensions#tabline#buffer_idx_mode=1
+" lightline
+let g:lightline = {
+    \   'colorscheme': 'solarized',
+    \   'active': {
+    \       'left':[ [ 'mode', 'paste' ],
+    \                [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+    \     ]
+    \   },
+    \   'component': {
+    \       'lineinfo': ' %3l:%-2v',
+    \    },
+    \   'component_function': {
+    \       'gitbranch': 'fugitive#head',
+    \   }
+    \}
+let g:lightline.separator = {
+    \   'left': '', 'right': ''
+    \}
+let g:lightline.subseparator = {
+    \   'left': '', 'right': ''
+    \}
 
 " Neomake
 " Neomake - elixir
