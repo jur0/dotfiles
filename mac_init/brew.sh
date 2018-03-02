@@ -37,6 +37,7 @@ brew install git
 brew install git-flow
 brew install gzip
 brew install less
+brew install mc
 brew install nmap
 brew install openssh
 brew install rsync
