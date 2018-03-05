@@ -425,7 +425,7 @@ nnoremap <leader>sc :SessionClose<CR>
 
 " lightline
 let g:lightline = {
-    \   'colorscheme': 'solarized',
+    \   'colorscheme': 'molokai',
     \   'active': {
     \       'left':[ [ 'mode', 'paste' ],
     \                [ 'gitbranch', 'readonly', 'filename', 'modified' ]
