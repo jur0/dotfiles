@@ -40,6 +40,14 @@ direnv:
 
 tmux:
 	ln -fs $(PWD)/tmux/tmux.conf ~/.tmux.conf
+	if [ ! -d ~/.tmux ]; then \
+		mkdir -p ~/.tmux/plugins/tpm; \
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm; \
+	fi
+	tmux start-server
+	tmux new-session -d
+	~/.tmux/plugins/tpm/scripts/install_plugins.sh
+	tmux kill-server
 
 vagrant:
 	if [ ! -d ~/VM/vagrant ]; then \

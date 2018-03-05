@@ -84,6 +84,10 @@ brew install python3
 pip2 install neovim
 pip3 install neovim
 
+# Install tmuxp (tmux session manager).
+pip3 install tmuxp
+mkdir ${HOME}/.tmuxp
+
 brew install vimpager
 brew install source-highlight
 brew install grc
