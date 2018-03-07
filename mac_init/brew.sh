@@ -92,6 +92,9 @@ brew install vimpager
 brew install source-highlight
 brew install grc
 
+# Install dockutil.
+brew install dockutil
+
 # Install font tools.
 brew tap bramstein/webfonttools
 brew install sfnt2woff
