@@ -20,6 +20,7 @@ brew cask install font-inconsolata-for-powerline
 brew cask install font-source-code-pro-for-powerline
 brew cask install font-hack
 
+brew cask install alfred
 brew cask install appcleaner
 brew cask install brave
 brew cask install commandq
