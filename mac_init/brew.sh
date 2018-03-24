@@ -84,6 +84,9 @@ brew install python3
 pip2 install neovim
 pip3 install neovim
 
+# Install npm.
+brew install npm
+
 # Install tmuxp (tmux session manager).
 pip3 install tmuxp
 mkdir ${HOME}/.tmuxp
