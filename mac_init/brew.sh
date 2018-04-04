@@ -91,6 +91,9 @@ brew install npm
 pip3 install tmuxp
 mkdir ${HOME}/.tmuxp
 
+# Install direnv.
+brew install direnv
+
 brew install vimpager
 brew install source-highlight
 brew install grc
