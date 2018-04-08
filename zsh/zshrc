@@ -15,3 +15,6 @@ source $ZSH_CONFIG_DIR/functions
 
 # Allow direnv.
 eval "$(direnv hook zsh)"
+
+# asdf
+source /usr/local/opt/asdf/asdf.sh
