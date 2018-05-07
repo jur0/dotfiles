@@ -6,7 +6,7 @@
     email = jurajhlista@gmail.com
 
 [credential]
-    helper = store
+    helper = osxkeychain
 
 [core]
     editor = nvim
