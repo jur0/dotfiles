@@ -22,6 +22,8 @@ alias dotfiles="cd ~/data/project/github/dotfiles"
 
 alias k="k -Ah"
 
+alias m="make"
+
 # Git commad aliases are in .gitconfig.
 alias g="git"
 
