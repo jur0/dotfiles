@@ -1,2 +1,6 @@
 .envrc
+.gitconfig.local
 .mix_tasks
+.nvimrc
+.emacs
+
