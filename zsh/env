@@ -8,6 +8,7 @@
 # by default. Also, other utils installed by brew, located in /usr/local/bin
 # directory, take precedence.
 path=('/usr/local/opt/coreutils/libexec/gnubin')
+path+=('/usr/local/opt/python/libexec/bin')  # Use python3 as default (python commad points to python3)
 path+=('/usr/local/bin')
 path+=('/bin')
 path+=('/usr/bin')
@@ -38,7 +39,7 @@ export LESS="-R"
 
 # File's default permissions: -rw-------
 # Directory's default permissions: drwx------
-umask u=rwx,g=,o=
+umask u=rwx,g=rx,o=rx
 
 # Homebrew
 export HOMEBREW_NO_ANALYTICS=1
