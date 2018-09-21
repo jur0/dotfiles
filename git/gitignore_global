@@ -3,4 +3,5 @@
 .mix_tasks
 .nvimrc
 .emacs
+.direnv/
 
