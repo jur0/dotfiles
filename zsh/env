@@ -8,6 +8,7 @@
 # by default. Also, other utils installed by brew, located in /usr/local/bin
 # directory, take precedence.
 path=('/usr/local/opt/coreutils/libexec/gnubin')
+path+=('/usr/local/opt/make/libexec/gnubin')
 path+=('/usr/local/opt/python/libexec/bin')  # Use python3 as default (python commad points to python3)
 path+=('/usr/local/bin')
 path+=('/bin')
@@ -22,6 +23,7 @@ export PATH
 
 # Prefer manual pages of GNU coreutils and brew installed utils.
 manpath=('/usr/local/opt/coreutils/libexec/gnuman')
+manpath+=('/usr/local/opt/make/libexec/gnuman')
 manpath+=('/usr/local/share/man')
 manpath+=('/usr/share/man')
 export MANPATH

@@ -24,6 +24,7 @@ brew install gnu-sed --with-default-names
 brew install gnu-tar --with-default-names
 brew install gnu-which --with-default-names
 brew install grep --with-default-names
+brew install make --with-default-names
 
 brew install ack
 brew install diffutils
