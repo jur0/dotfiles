@@ -103,7 +103,7 @@ if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
 fi
 
 # Upgrade system.
-alias osxupdate="echo \"*** softwareupdate -l (JUST listing updates!)\" && softwareupdate -l \
+alias osxupdate="echo \"*** softwareupdate -l (JUST listing updates, install with 'softwareupdate -ia')\" && softwareupdate -l \
     && echo \"*** mas upgrade\" && sudo mas upgrade \
     && echo \"*** brew update\" && brew update \
     && echo \"*** brew upgrade\" &&  brew upgrade \
