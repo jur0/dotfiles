@@ -187,16 +187,6 @@ set sessionoptions+=winpos
 set sessionoptions+=winsize
 " TODO: shada?
 
-" Python paths
-let os=substitute(system('uname'), '\n', '', '')
-if os == 'Darwin' || os == 'Mac'
-    let g:python_host_prog='/usr/local/bin/python2'
-    let g:python3_host_prog='/usr/local/bin/python3'
-elseif os == 'Linux'
-    let g:python_host_prog='/usr/bin/python2'
-    let g:python3_host_prog='/usr/bin/python3'
-endif
-
 "------------------------------------------------------------------------------
 " Colors
 "------------------------------------------------------------------------------

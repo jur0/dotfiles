@@ -47,6 +47,8 @@ brew install tmux --with-utf8proc
 brew install p7zip
 brew install pigz
 brew install pv
+brew install pyenv
+brew install zlib   # in order to build pythin with pyenv
 brew install rename
 brew install ssh-copy-id
 brew install testssl
@@ -80,8 +82,15 @@ fi;
 
 # Install neovim.
 brew install neovim
-brew install python2
-brew install python3
+
+# Install python
+# https://github.com/pyenv/pyenv/wiki/Common-build-problems
+CPPFLAGS="-I$(brew --prefix zlib)/include" pyenv install -v 2.7.15
+CPPFLAGS="-I$(brew --prefix zlib)/include" pyenv install -v 3.7.1
+# Set both global python versions (python3 preferred as it's 1st).
+pyenv global 3.7.1 2.7.15
+
+# Install python neovim modules
 pip2 install neovim
 pip3 install neovim
 

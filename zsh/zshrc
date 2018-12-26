@@ -16,5 +16,8 @@ source $ZSH_CONFIG_DIR/functions
 # Allow direnv.
 eval "$(direnv hook zsh)"
 
+# Python pyenv initializer.
+eval "$(pyenv init -)"
+
 # asdf
 source /usr/local/opt/asdf/asdf.sh
