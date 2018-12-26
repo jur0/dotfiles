@@ -62,7 +62,6 @@ set nojoinspaces        " Insert just one space joining lines with J
 set lazyredraw          " Don't redraw while executing macros (for performance)
 set showcmd             " Show info about the current command
 set showmatch           " Show matching brackets when typing them
-set secure              " Forbid loading of .vimrc under $PWD
 set nomodeline          " Modelines have been a source of vulnerabilities
 set iskeyword+=-        " Makes foo-bar one word
 set mouse=a             " Allow mouse
@@ -589,6 +588,8 @@ augroup whitespace
     au BufWrite * silent call DeleteTrailing()
 augroup end
 
-if filereadable(expand('.vimrc.local'))
-    source .nvim.local
-endif
+" Allow loading local executing rc files (looks for .nvimrc)
+set exrc
+" Disallow use of :autocmd, shell and write command in local .nvimrc
+set secure
+
