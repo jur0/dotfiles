@@ -11,7 +11,6 @@ Plug 'dietsche/vim-lastplace'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'itchyny/lightline.vim'
-Plug 'jceb/vim-orgmode'
 Plug 'tomasr/molokai'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -22,6 +21,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Shougo/echodoc.vim'
 Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'vimwiki/vimwiki'
 
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
@@ -434,6 +435,9 @@ let g:lightline.separator = {
 let g:lightline.subseparator = {
     \   'left': '', 'right': ''
     \}
+
+" Vimwiki
+let g:vimwiki_list=[{'path': '~/vimwikitest/'}]
 
 " Neomake
 " Neomake - elixir
