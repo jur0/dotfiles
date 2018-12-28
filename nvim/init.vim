@@ -432,6 +432,10 @@ let g:lightline.subseparator = {
     \   'left': '', 'right': ''
     \}
 
+" gitgutter (this is to have faster refresh, default is 4000 ms!)
+set updatetime=100      " in ms
+let g:gitgutter_max_signs=1000
+
 " Vimwiki
 let g:vimwiki_list=[{'path': '~/vimwikitest/'}]
 
