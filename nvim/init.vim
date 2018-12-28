@@ -6,7 +6,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'ervandew/supertab'
-Plug 'FooSoft/vim-argwrap'
 Plug 'dietsche/vim-lastplace'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -401,9 +400,6 @@ noremap <leader><space> :Lex<CR>
 " deoplete
 let g:deoplete#enable_at_startup=1
 inoremap <expr><tab> pumvisible() ? "\<C-n>" : "\<tab>"
-
-" vim-argwrap
-nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " vim-session
 let g:session_directory='~/.nvim/session'
