@@ -102,7 +102,6 @@ mkdir ${HOME}/.tmuxp
 # EMACS!
 brew tap d12frosted/emacs-plus
 brew install emacs-plus
-brew linkapps emacs-plus
 
 # Install direnv.
 brew install direnv
@@ -125,7 +124,7 @@ brew install mas
 
 # Install parity ethereum client.
 brew tap paritytech/paritytech
-brew install parity --geth-compatible
+brew install parity
 
 # Remove outdated versions from the cellar.
 brew cleanup
