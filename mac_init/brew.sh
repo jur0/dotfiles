@@ -122,8 +122,6 @@ brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
 
-brew install dark-mode
-
 # CLI for Mac App Store.
 brew install mas
 
