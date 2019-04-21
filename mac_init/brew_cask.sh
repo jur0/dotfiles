@@ -22,7 +22,7 @@ brew cask install font-hack
 
 brew cask install alfred
 brew cask install appcleaner
-brew cask install brave
+brew cask install brave-browser
 brew cask install commandq
 brew cask install dropbox
 brew cask install evernote
@@ -45,7 +45,7 @@ brew cask install slack
 brew cask install spectacle
 brew cask install spotify
 brew cask install the-unarchiver
-brew cask install torbrowser
+brew cask install tor-browser
 brew cask install transmission
 brew cask install virtualbox
 brew cask install vlc
