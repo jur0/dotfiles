@@ -14,17 +14,15 @@ brew install coreutils
 # Install some other useful utilities like `sponge`.
 brew install moreutils
 
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-# --with-default-names - there could be a waring when installing python.
 brew install findutils
 
 # Install utils.
-brew install gnu-indent --with-default-names
-brew install gnu-sed --with-default-names
-brew install gnu-tar --with-default-names
-brew install gnu-which --with-default-names
-brew install grep --with-default-names
-brew install make --with-default-names
+brew install gnu-indent
+brew install gnu-sed
+brew install gnu-tar
+brew install gnu-which
+brew install grep
+brew install make
 
 brew install ack
 brew install diffutils
@@ -43,7 +41,7 @@ brew install nmap
 brew install openssh
 brew install rsync
 brew install screen
-brew install tmux --with-utf8proc
+brew install tmux
 brew install p7zip
 brew install pigz
 brew install pv
@@ -55,8 +53,8 @@ brew install testssl
 brew install tree
 brew install vbindiff
 brew install watch
-brew install wdiff --with-gettext
-brew install wget --with-iri
+brew install wdiff
+brew install wget
 brew install zopfli
 
 # Install Bash 4.
