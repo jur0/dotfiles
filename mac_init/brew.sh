@@ -48,7 +48,7 @@ brew install p7zip
 brew install pigz
 brew install pv
 brew install pyenv
-brew install zlib   # in order to build pythin with pyenv
+brew install zlib   # in order to build python with pyenv
 brew install rename
 brew install ssh-copy-id
 brew install testssl
@@ -100,6 +100,11 @@ brew install npm
 # Install tmuxp (tmux session manager).
 pip3 install tmuxp
 mkdir ${HOME}/.tmuxp
+
+# EMACS!
+brew tap d12frosted/emacs-plus
+brew install emacs-plus
+brew linkapps emacs-plus
 
 # Install direnv.
 brew install direnv
