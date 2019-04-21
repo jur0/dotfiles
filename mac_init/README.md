@@ -1,6 +1,11 @@
 Installation & maintenance instructions for OS X
 ================================================
 
+Install Command Line Tools for XCode:
+```
+xcode-select --install
+```
+
 All the packages are installed and maintained using `brew` and `brew cask`
 (large binaries). Therefore, we need to install `brew` itself:
 
