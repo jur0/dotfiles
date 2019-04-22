@@ -8,10 +8,9 @@ dockutil --add '~/Downloads' --view grid --display folder
 
 dockutil --add /Applications/iTerm.app
 dockutil --add /Applications/Google\ Chrome.app
-dockutil --add /Applications/Brave.app
-dockutil --add /Applications/TorBrowser.app
+dockutil --add /Applications/Brave\ Browser.app
+dockutil --add /Applications/Tor\ Browser.app
 dockutil --add /Applications/Evernote.app
-dockutil --add /Applications/MacDown.app
 dockutil --add /Applications/MacPass.app
 dockutil --add /Applications/Calendar.app
 dockutil --add /Applications/Signal.app
