@@ -39,7 +39,6 @@ brew cask install keybase
 # Little snitch requires installer to be run after brew install.
 brew cask install little-snitch
 brew cask install ledger-live
-brew cask install macdown
 brew cask install macpass
 brew cask install onionshare
 brew cask install signal
