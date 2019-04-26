@@ -20,10 +20,12 @@ brew cask install font-inconsolata-for-powerline
 brew cask install font-source-code-pro-for-powerline
 brew cask install font-hack
 
+brew tap dteoh/sqa
+brew cask install slowquitapps
+
 brew cask install alfred
 brew cask install appcleaner
 brew cask install brave-browser
-brew cask install commandq
 brew cask install dropbox
 brew cask install evernote
 brew cask install flux
