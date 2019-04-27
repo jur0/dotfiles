@@ -27,7 +27,13 @@ scripts:
   1. `setup.sh`
   2. `dock.sh`
 
-Reboot the system for some of the settings to take effect
+Some security settings:
+
+  1. `firewall.sh`
+  2. [disable services](https://github.com/karek314/macOS-home-call-drop), use
+     lingon app to disable some apple trash.
+
+Reboot the system for some of the settings to take effect.
 
 System upgrade
 --------------

@@ -38,6 +38,7 @@ brew cask install iterm2
 brew cask install keybase
 # Little snitch requires installer to be run after brew install.
 brew cask install little-snitch
+brew cask install lingon-x
 brew cask install ledger-live
 brew cask install macpass
 brew cask install onionshare
