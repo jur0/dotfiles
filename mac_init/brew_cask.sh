@@ -29,8 +29,7 @@ brew cask install brave-browser
 brew cask install dropbox
 brew cask install evernote
 brew cask install flux
-brew cask install google-chrome
-brew cask install google-hangouts
+brew cask install firefox
 # For istat-menus to be able monitor frequency of processor.
 brew cask install intel-power-gadget
 brew cask install istat-menus
