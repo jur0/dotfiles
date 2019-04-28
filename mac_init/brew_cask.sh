@@ -49,8 +49,10 @@ brew cask install spotify
 brew cask install the-unarchiver
 brew cask install tor-browser
 brew cask install transmission
+brew cask install tunnelblick
 brew cask install virtualbox
 brew cask install vlc
+brew cask install wireshark
 
 brew cask cleanup
 

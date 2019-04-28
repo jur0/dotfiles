@@ -74,6 +74,10 @@ alias week='date +%V'
 # Stopwatch.
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
+# Turn on/off dnscrypt (dnscrypt-proxy service is always running)
+alias dnscrypt_on='networksetup -setdnsservers Wi-Fi 127.0.0.1'
+alias dnscrypt_off='networksetup -setdnsservers Wi-Fi empty'
+
 # Generic colouriser
 GRC=`which grc 2>/dev/null`
 if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
