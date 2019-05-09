@@ -122,6 +122,9 @@ brew install woff2
 # CLI for Mac App Store.
 brew install mas
 
+# CLI for speedtest.net.
+brew install speedtest-cli
+
 # Install parity ethereum client.
 brew tap paritytech/paritytech
 brew install parity
