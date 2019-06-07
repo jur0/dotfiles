@@ -18,5 +18,6 @@ dockutil --add /Applications/VLC.app
 dockutil --add /Applications/Slack.app
 dockutil --add /Applications/VirtualBox.app
 dockutil --add /Applications/Spotify.app
+dockutil --add /Applications/Lingon\ X.app
 dockutil --add /Applications/System\ Preferences.app
 
