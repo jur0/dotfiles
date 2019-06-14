@@ -106,6 +106,9 @@ if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
 #    fi
 fi
 
+# Fox brew to work with pyenv
+alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
+
 # Upgrade system.
 alias osxupdate="echo \"*** softwareupdate -l (JUST listing updates, install with 'softwareupdate -ia')\" && softwareupdate -l \
     && echo \"*** mas upgrade\" && sudo mas upgrade \
