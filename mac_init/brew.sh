@@ -130,6 +130,10 @@ brew install speedtest-cli
 brew tap paritytech/paritytech
 brew install parity
 
+# Install geth in order to connect to the parity using `geth console`.
+brew tap ethereum/ethereum
+brew install ethereum
+
 # Remove outdated versions from the cellar.
 brew cleanup
 
