@@ -29,6 +29,7 @@ brew install diffutils
 # Maybe further fzf installation will be needed using an install script.
 brew install fzf
 brew install gawk
+brew install gitup
 brew install gnupg
 brew install gnupg2
 brew install gnutls
