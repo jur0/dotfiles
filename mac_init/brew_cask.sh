@@ -19,6 +19,7 @@ brew cask install font-inconsolata
 brew cask install font-inconsolata-for-powerline
 brew cask install font-source-code-pro-for-powerline
 brew cask install font-hack
+brew cask install font-iosevka-nerd-font-mono
 
 brew tap dteoh/sqa
 brew cask install slowquitapps
