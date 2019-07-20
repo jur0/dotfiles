@@ -100,11 +100,6 @@ brew install npm
 pip3 install tmuxp
 mkdir ${HOME}/.tmuxp
 
-# EMACS!
-brew tap d12frosted/emacs-plus
-brew install emacs-plus
-ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications
-
 # Install direnv.
 brew install direnv
 

@@ -29,6 +29,7 @@ brew cask install appcleaner
 brew cask install brave-browser
 brew cask install dropbox
 brew cask install dozer
+brew cask install emacs
 brew cask install evernote
 brew cask install flux
 brew cask install firefox
