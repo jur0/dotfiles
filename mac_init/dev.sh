@@ -17,5 +17,4 @@ asdf plugin-add rebar
 asdf plugin-add elixir
 
 # Install docker.
-brew install docker
-
+brew cask install docker
