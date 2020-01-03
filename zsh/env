@@ -23,6 +23,7 @@ path+=('/usr/local/sbin')
 path+=('/sbin')
 path+=('/usr/sbin')
 path+=('~/bin')
+path+=('/Library/TeX/texbin')
 path+=("$HOME/.cargo/bin")
 #path+=(~/.npm-global/bin)
 export PATH

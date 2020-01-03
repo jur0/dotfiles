@@ -26,6 +26,7 @@ brew cask install slowquitapps
 
 brew cask install alfred
 brew cask install appcleaner
+brew cask install basictex
 brew cask install brave-browser
 brew cask install dropbox
 brew cask install dozer
