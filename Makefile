@@ -2,7 +2,7 @@
 
 all: curl zsh git nvim tmux
 
-erlang: kerl direnv
+erlang: kerl
 
 curl:
 	ln -fs $(PWD)/curl/curlrc ~/.curlrc
@@ -32,12 +32,6 @@ nvim:
 kerl:
 	ln -fs $(PWD)/kerl/kerlrc ~/.kerlrc
 
-direnv:
-	if [ ! -d ~/.config/direnv ]; then \
-		mkdir -p ~/.config/direnv; \
-	fi
-	ln -fs $(PWD)/direnv/direnvrc ~/.config/direnv/direnvrc
-
 tmux:
 	ln -fs $(PWD)/tmux/tmux.conf ~/.tmux.conf
 	if [ ! -d ~/.tmux ]; then \
@@ -53,4 +47,3 @@ vagrant:
 	if [ ! -d ~/VM/vagrant ]; then \
 		mkdir -p ~/VM/vagrant; \
 	fi
-
