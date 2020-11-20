@@ -12,13 +12,3 @@ source $ZSH_CONFIG_DIR/setup
 source $ZSH_CONFIG_DIR/aliases
 # Functions.
 source $ZSH_CONFIG_DIR/functions
-
-# Allow direnv.
-eval "$(direnv hook zsh)"
-
-# Python pyenv initializer.
-eval "$(pyenv init -)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
-# asdf
-source /usr/local/opt/asdf/asdf.sh
