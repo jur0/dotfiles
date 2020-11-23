@@ -3,7 +3,7 @@
 
 [user]
     name = Juraj Hlista
-    email = jurajhlista@gmail.com
+    email = juraj@juraj.me
 
 [credential]
     helper = osxkeychain
@@ -104,4 +104,3 @@
 
 [include]
     path = ~/.gitconfig.local
-
