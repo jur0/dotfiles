@@ -51,7 +51,6 @@ export PAGER="less"
 # Don't clear the screen after quitting a manual page.
 export MANPAGER="less -X"
 export LESS="-R"
-export GNUPGHOME="$HOME/.gnupg"
 
 # File's default permissions: -rw-------
 # Directory's default permissions: drwx------

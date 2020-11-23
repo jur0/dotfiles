@@ -126,3 +126,18 @@ source /usr/local/opt/asdf/asdf.sh
 
 # Allow direnv.
 eval "$(direnv hook zsh)"
+
+# Setup GnuPG if there is already .gnupg directory. Authentication
+# subkey is expected to be present.
+GNUPGHOME="$HOME/.gnupg"
+if [[ -d $GNUPGHOME ]]; then
+    if [[ ! -e $GNUPGHOME/gpg-agent.conf ]]; then
+        GNUPG_AGENT_CONF=`realpath $ZSH_CONFIG_DIR/../gnupg/gpg-agent.conf`
+        ln -s $GNUPG_AGENT_CONF $GNUPGHOME/gpg-agent.conf
+    fi
+    export GNUPGHOME
+    export GPG_TTY=$(tty)
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    gpgconf --launch gpg-agent
+    ssh-add -l
+fi
